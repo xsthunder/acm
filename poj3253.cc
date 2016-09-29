@@ -25,8 +25,32 @@ void pA(int *begin,int n){
 	}
 	printf("\n");
 }
+int n;
+const int N=2e4+100;
+ll A[N];
+ll Tre(){
+	ll sum=0;
+	sort(A,A+n);
+	for(int i=0;i<n-1;i++){
+		A[i+1]=A[i]+A[i+1];
+		sum+=A[i+1];
+	}
+	return sum;
+}
+void solve(){
+	while(scanf("%d",&n)!=EOF){
+		for(int i=0;i<n;i++){
+			scanf("%lld", A+i);
+		}
+		printf("%lld\n",Tre());
+	}
+}
 int main()
 {
-	
+	solve();
 	return 0;
 }
+//poj3253.cc
+//generated automatically at Thu Sep 29 22:14:48 2016
+//by xsthunder
+
