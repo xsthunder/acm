@@ -21,7 +21,7 @@ using namespace std;
 typedef pair<int,int> point;
 void pA(int *begin,int n){
 	for(int i=0;i<n;i++){
-		printf("%d" ,*(begin+i));
+		printf("%d " ,*(begin+i));
 	}
 	printf("\n");
 }
