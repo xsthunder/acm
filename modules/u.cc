@@ -7,13 +7,13 @@
 #include<map>
 #include<queue>
 #include<set>
-#include<stack>
 #include<cctype>
 #include<cstring>
 #include<utility>
 #include<cmath>
 const int inf=0x7fffffff;
 #define IF if(test)
+#define gts(s) fgets((s),sizeof(s),stdin)
 const bool test=1;
 typedef long long int ll;
 using namespace std;
