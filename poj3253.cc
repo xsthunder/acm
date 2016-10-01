@@ -15,11 +15,12 @@
 #include<cassert>
 const int inf=0x7fffffff;
 #define IF if(test)
-const bool test=1;
+const bool test=0;
 typedef long long int ll;
 using namespace std;
 typedef pair<int,int> point;
-void pA(int *begin,int n){
+template <class T>
+void pA(T *begin,int n){
 	for(int i=0;i<n;i++){
 		printf("%d" ,*(begin+i));
 	}
@@ -30,10 +31,16 @@ const int N=2e4+100;
 ll A[N];
 ll Tre(){
 	ll sum=0;
-	sort(A,A+n);
+	priority_queue<ll, vector<ll> ,greater<ll> > s(A,A+n);
+	ll tmp;
 	for(int i=0;i<n-1;i++){
-		A[i+1]=A[i]+A[i+1];
-		sum+=A[i+1];
+		tmp=0;
+		tmp+=s.top();s.pop();
+		IF cout<<tmp<<' ';
+		tmp+=s.top();s.pop();
+		IF cout<<tmp<<endl;
+		sum+=tmp;
+		s.push(tmp);
 	}
 	return sum;
 }

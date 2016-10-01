@@ -15,18 +15,17 @@
 #include<cassert>
 const int inf=0x7fffffff;
 #define IF if(test)
-const bool test=1;
+const bool test=0;
 typedef long long int ll;
 using namespace std;
 typedef pair<int,int> point;
 void pA(int *begin,int n){
 	for(int i=0;i<n;i++){
-		printf("%d" ,*(begin+i));
+		printf("%d " ,*(begin+i));
 	}
 	printf("\n");
 }
 char s[500];
-int cnt;
 int ans[500];
 int main()
 {
@@ -34,31 +33,43 @@ int main()
 	scanf("%d",&t);
 	getchar();
 	fgets(s,sizeof(s),stdin);
+	IF cout<<s;
+	memset (ans,0,sizeof(ans));
 	int flag=0;
 	int tcnt=0;
-	for(int i=0;s[i]!='\0';i++){
+	int cnt=0;
+int i=0;
+	for(;s[i]!='\n';i++){
 		if(flag){
-			if(s[i]=='B'){
+			if(s[i]=='B'){//b b
 				tcnt++;
-				continue;
+				flag=1;
+		//		continue;
 			}
-			else {
+			else { //b w
 				ans[cnt++]=tcnt;
-				tcnt++;
+				tcnt=0;;
+				flag=0;
 			}
 		}
 		else {
-			if(s[i]=='B'){
+			if(s[i]=='B'){// w b
 				flag=1;
-				tcnt++;
+				tcnt=1;
 			}
-			else {
-				continue;
+			else { //w w
+		//		continue;
+				flag=0;
+				tcnt=0;
 			}
 		}
+		IF cout<<s[i]<<' '<<cnt<<' '<<tcnt<<endl;
+	}
+	if(s[i-1]=='B'){
+		ans[cnt++]=tcnt;
 	}
 	printf("%d\n",cnt);
-	pA(ans,cnt);
+	if(cnt!=0)pA(ans,cnt);
 
 	return 0;
 }
@@ -66,3 +77,5 @@ int main()
 //generated automatically at Fri Sep 30 22:24:16 2016
 //by xsthunder
 
+//AC at Sat Oct  1 11:02:07 2016
+ 
