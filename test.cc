@@ -1,3 +1,4 @@
+const bool test=1;
 #include<iostream>
 #include<cctype>
 #include<algorithm>
@@ -7,29 +8,29 @@
 #include<map>
 #include<queue>
 #include<set>
-#include<stack>
 #include<cctype>
 #include<cstring>
 #include<utility>
 #include<cmath>
-#include<cassert>
 const int inf=0x7fffffff;
-const bool test=0;
+#define IF if(test)
+#define FI if(!test)
+#define gts(s) fgets((s),sizeof(s),stdin)
 typedef long long int ll;
 using namespace std;
 typedef pair<int,int> point;
-void pA(int *begin,int n){
-	for(int i=0;i<n;i++){
-		printf("%2d",*(begin+i));
-	}
-	printf("\n");
+template <typename T>
+void pA(T *begin,int n){ for(int i=0;i<n;i++){ printf("%d " ,*(begin+i)); } printf("\n"); }
+void sol(){
+
 }
+int (*fuc[2])(int a,int b);
 int main()
 {
-	
+	sol();
 	return 0;
 }
 //test.cc
-//generated automatically at Fri Sep 23 22:27:57 2016
+//generated automatically at Thu Oct  6 22:03:52 2016
 //by xsthunder
 

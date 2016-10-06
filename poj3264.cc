@@ -57,15 +57,19 @@ void BA(){
 	}
 }
 int QI(int a,int b,int k,int l,int r){
+	IF cout<<a<<' ' <<b<<' '<<k<<' '<<l<<' '<<r<<endl;
 	if(r<=a||b<=l)return inf;
 	if(a<=l&&r<=b)return I[k];
 	else {
 		int vl=QI(a,b,k*2+1,l,(l+r)/2);
+		cout<<vl<<endl;;
 		int vr=QI(a,b,k*2+2,(l+r)/2,r);
+		cout<<' '<<vr<<endl;;
 		return min(vl,vr);
 	}
 }
 int QA(int a,int b,int k,int l,int r){
+	//IF cout<<a<<' ' <<b<<' '<<k<<' '<<l<<' '<<r<<endl;
 	if(r<=a||b<=l)return -1;
 	if(a<=l&&r<=b)return A[k];
 	else {
@@ -81,8 +85,9 @@ void Out(){
 	while(q--){
 		int a,b;
 		scanf("%d%d", &a,&b);
+		IF cout<<a<<' '<<b<<endl;
 		FI printf("%d\n", Q(a,b,0,0,n));
-		IF printf("A %d, I %d\n", QA(a,b,0,0,n),QI(a,b,0,0,n));
+		IF printf("A %d, I %d\n", QA(a-1,b,0,0,n),QI(a-1,b,0,0,n));
 	}
 }
 void sol(){
@@ -93,6 +98,26 @@ void sol(){
 		Out();
 	}
 }
+template <typename T>
+void pT(T *A, int d){//d for depth
+	int sum=0;
+	cout<<"------tree starts\n";
+	for(int i=0;i<d;i++){
+		cout<<i+1<<':';
+		for(int k=i;k<d;k++){
+			cout<<"    ";
+		}
+		for(int j=0;j<1<<i;j++){
+			cout.width(4);
+			cout<<*(A+sum++);
+		for(int k=i;k<d-1;k++){
+			cout<<"   ";
+		}
+		}
+		cout<<endl;
+	}
+	cout<<"------tree ends\n";
+}
 int main()
 {
 	FI sol();
@@ -102,6 +127,8 @@ int main()
 		init();
 		BA();
 		Out();
+		//pT(A,4);
+		//pT(I,4);
 //		pA(dat,n);
 //		pA(A,_n-1);
 //		pA(I,_n-1);
