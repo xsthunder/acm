@@ -1,0 +1,139 @@
+Case 1:
+B
+    A
+    B
+Case 2:
+A0
+    A1
+A1
+    B
+        B2
+            B4
+                C5
+    B1
+        B2
+            B6
+                C5
+            B1
+            B5
+        B32
+            B7
+    B3
+        B2
+A3
+    B1
+Case 3:
+A
+    B
+        A
+            B
+Case 4:
+A
+    B
+    C
+Case 5:
+A
+B
+C
+D
+Case 6:
+A
+Case 7:
+A1
+    B1
+        B1
+        B2
+    B2
+        B1
+    B3
+    B4
+C1
+    C1
+    C2
+    C3
+B5
+B6
+Case 8:
+ART
+    HISTORY
+        CHINESE HISTORY
+            THREE KINDOM
+                RESEARCHES ON CAOCAO
+                RESEARCHES ON LIUBEI
+            CHINESE MORDEN HISTORY
+        JAPANESE HISTORY
+            JAPANESE ACIENT HISTORY
+MATH
+    GRAPH THEORY
+Case 9:
+a b
+    b c
+        d e
+    d e
+d e
+Case 10:
+ART
+    HISTORY
+        CHINESE HISTORY
+            THREE KINDOM
+                RESEARCHES ON CAOCAO
+                RESEARCHES ON LIUBEI
+            CHINESE MORDEN HISTORY
+        JAPANESE HISTORY
+            JAPANESE ACIENT HISTORY
+MATH
+    GRAPH THEORY
+Case 11:
+0
+    0
+        0
+            0
+            1
+Case 12:
+1
+    2
+        3
+            2
+            4
+Case 13:
+ 
+     
+         
+             
+                 
+        a
+             
+                 
+0
+     
+Case 14:
+0 0 0
+    0000
+         
+            0000
+        0
+            0000
+0000
+    0000
+         
+            0000
+Case 15:
+0
+    a
+a
+    b
+        c
+    a
+b
+    c
+        d
+    e
+        f
+            g
+    a
+    b
+Case 16:
+A
+    B
+        C
+    B
