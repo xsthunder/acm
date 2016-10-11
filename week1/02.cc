@@ -60,10 +60,11 @@ void inp(){
 	}
 }
 int rmq(int l,int r,int k,int a,int b,int val){
-	printf("%d,%d,%d,%d,%d,%d\n",l,r,k,a,b,val);
+IF printf("%d,%d,%d,%d,%d,%d\n",l,r,k,a,b,val);
 	if(val<I[k])return inf;//quick start
+	if(r<a||l>b)return inf;
 	if(l>=a&&r<=b){
-	if(r-l==1){
+	if(b-a==1){
 		if(I[k]<=val)return I[k];
 		else return inf;
 	}
@@ -77,9 +78,6 @@ int rmq(int l,int r,int k,int a,int b,int val){
 		return vall;
 	}
 	}
-	else {
-		return inf;
-	}
 }
 void que(){
 	int r,l;
@@ -92,12 +90,14 @@ void que(){
 	if(r!=l)
 		for(;;){
 			b=rmq(l,r,0,0,_n,a);
+IF cout<<a<<' '<<b<<endl;
 			if(b==inf)break;
-			if(b==0){printf("error mod 0\n");exit(0);}
-			IF cout<<a<<' '<<b<<endl;
+			if(b==0)break;
+IF cout<<a<<' '<<b<<endl;
 			a=a%b;
-		}
-	printf("%d\n",a);
+			if(a==0)break;
+
+		} printf("%d\n",a); 
 }
 void sol(){
 	int t;
@@ -109,13 +109,24 @@ void sol(){
 			scanf("%d",&q);
 			while(q--){
 				que();
+
 			}
 		}
 	}
 }
 int main()
 {
-	sol();
+	//sol();
+	IF {
+		init();
+		inp();
+		int a,b;
+		
+	int k=_n-2;
+		while(scanf("%d%d",&a,&b)!=EOF){
+			cout<<rmq(a,b,0,0,_n,I[k+a])<<endl;
+		}
+	}
 	return 0;
 }
 //02.cc
