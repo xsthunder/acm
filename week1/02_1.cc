@@ -1,4 +1,4 @@
-const bool test=1;
+const bool test=0;
 #include<iostream>
 #include<stack>
 #include<cctype>
@@ -58,7 +58,7 @@ void sol(){
 			l--;r--;
 			int ans=a[l];
 			int tmp=b[l];
-			while(tmp<r){
+			while(tmp<=r){
 				ans%=a[tmp];
 				tmp=b[tmp];
 			}
