@@ -63,22 +63,22 @@ void sol(){
 					d[i]=vd+1;
 				}
 		}
-		for(int i=1;i<=n;i++){
-			if(i!=s)printf("%d ",d[i]);
-		}
-		printf("\n");
 	 }
+	 for(int i=1;i<=n;i++){
+		 if(i!=s)printf("%d ",d[i]);
+	 }
+	 printf("\n");
 }
-	 int main()
-	 {
-		 int t;
-		 scanf("%d",&t);
-		 while(t--){
-			 sol();
-		 }
-		 return 0;
-	 }
-	 //04.cc
-	 //generated automatically at Thu Oct 13 12:22:20 2016
-	 //by xsthunder
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--){
+		sol();
+	}
+	return 0;
+}
+//04.cc
+//generated automatically at Thu Oct 13 12:22:20 2016
+//by xsthunder
 
