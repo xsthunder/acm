@@ -1,20 +1,2 @@
-1p2
-0 -1 1 -1 -1 
-i,d 31
-sp.size()1
-q.size()1
-vi,vd 3 1
-si.size()1
-u,v 2 3
-0 2 1 -1 -1 
-q.size()1
-vi,vd 2 2
-si.size()0
-
-0 1 1 1 1 
-i,d 21
-sp.size()0
-q.size()1999999
-vi,vd 2 1
-si.size()0
-
+2
+Impossible

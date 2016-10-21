@@ -1,30 +1,25 @@
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <math.h>
- 
+#include <cstdio>
+#include <cstring>
 using namespace std;
- 
-int main(){
-    int n;
-    cin >> n;
-    double** p = new double*[2];
-    for (int i = 0; i < 2; i++)
-        p[i] = new double[n];
-    for (int i = 0; i < 2; i++)
-        for (int j = 0; j < n; j++)
-            cin >> p[i][j];
-    double a = 0;
-    for (int i = 1; i < 4; i++){
-        for (int j = 0; j < n; j++)
-            a += pow(fabs(p[0][j] - p[1][j]), i);
-        cout << fixed << setprecision(8) << pow(a, 1.0 / i) << "\n";
-        a = 0;
-    }
-    double d = 0;
-    for (int i = 0; i < n; i++){
-        double tmp = fabs(1.0 * p[0][i] - p[1][i]);
-        d = d < tmp ? tmp : d;
-    }
-    cout << d << "\n";
+char ch[30];
+double p[1000100];
+
+
+int main()
+{
+	p[0]=0.0;  
+    for(int i=1;i<=1000000;i++){  
+        p[i]=p[i-1]+1.0/(1.0*i*1.0*i);  
+    }  
+	while(scanf("%s",ch)!=EOF){
+		int len=strlen(ch);
+		if(len>=7)printf("1.64493\n");
+		else{
+			int n=0;
+			for(int i=0;i<len;i++)n=n*10+ch[i]-'0';
+			printf("%.5lf\n",p[n]);
+		}
+	}
+	return 0;
 }
+
