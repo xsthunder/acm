@@ -34,33 +34,73 @@ int (*now)(int x,int y);
 const int N=2e5+10;
 int _n=0;
 int f[2][16][N];
-void cal(int x){
-	long long sum=1;
+int (*A)[N];
+int n;
+int cnst[2]={
+	0,
+	inf
+};
+long long sum;
+int cal(int x){
+	sum=1;
+	int tmp=0;
 	while(sum<x){
-		_n++;
+		tmp++;
 		sum<<=1;
 	}
+	return tmp;
 }
 void pre(int fc){
 	now=fuc[fc];
-	
+	_n=cal(n);
+	cout<<sum<<endl;;
+	for(int i=1;i<=_n;i++){
+		for(int j=0;j+(1>>i)<=sum;j++){
+			f[fc][i][j]=now(f[fc][i-1][j],f[fc][i-1][j+(1<<(i-1))]);
+			cout<<f[fc][i-1][j]<<' '<<f[fc][i-1][j+(1<<i)]<<' '<<(1<<i)<<endl;;
+		}
+	}
+}
+bool qry(int i,int fc){
+	now=fuc[fc];
+	if(fc==1){
+		if(i==n-1)return true;
+		int p=cal(n-i);p--;
+		return now(f[fc][p][i],f[fc][p][n-1-(1>>p)+1]);
+	}
+	else if(fc==0){
+		if(i==0)return false;
+		int p=cal(i+1);p--;
+		return now(f[fc][p][0],f[fc][p][i-(1>>p)+1]);
+	}
+	printf("expection in qry\n");
+	exit(1);
 }
 bool good(int x){
-
+	for(int c=0;c<2;c++){
+		if(fuc[c](*A[x],qry(x,c))!=x)return false;
+	}
+	return true;
 }
 void sol(){
-	int n;scanf("%d",&n);
+	scanf("%d",&n);_n=cal(n);
+	for(int i=0;i<2;i++)fill(&f[i][0][0],&f[i][0][0]+N,cnst[i]);
 	for(int i=0;i<n;i++){
 		int x; scanf("%d",&x);
+		//cout<<i;
 		for(int j=0;j<2;j++)f[j][0][i]=x;
 	}
 	for(int j=0;j<2;j++)pre(j);
 	set<int >s;
+	pA(f[0][1],n);
+	pA(f[1][1],n);
 	for(int i=0;i<n;i++){
 		if(good(i))s.insert(i);
 	}
-	auto flag=s.rend();flag--;
-	for(auto it =s.rbegin();it!=s.rend();it++){
+	auto flag=s.begin();
+	if(s.size()!=0){auto flag=s.end();flag--;}
+	printf("%d\n",(int )s.size());
+	for(auto it =s.begin();it!=s.end();it++){
 		printf("%d",*it);
 		if(it!=flag)printf("\n");
 	}
@@ -69,6 +109,7 @@ int main()
 {
 	fuc[0]=min;
 	fuc[1]=max;
+	A=&f[0][0];
 	sol();
 	return 0;
 }
