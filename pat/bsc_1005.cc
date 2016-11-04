@@ -28,7 +28,10 @@ int nxt(int x){
 }
 int A[5000];
 void fnd(int f){
-	if(f==1) {A[f]=0;return ;}
+	if(f==1) {
+		if(A[f]==-1){A[f]=0;return ;}
+		else return ;
+	}
 	int x=f;
 	if(A[x]!=-1){
 		return;
@@ -62,9 +65,11 @@ void sol(){
 	for(int i=1;i<5000;i++){
 		if(A[i]==0)s.insert(i);
 	}
+	bool fflag=0;
 	for(auto it=s.rbegin();it!=s.rend();it++){
-		if(it==s.rbegin())printf("%d",*it);
-		else printf(" %d",*it);
+		if(fflag)printf(" ");
+		printf("%d",*it);
+		fflag=1;
 	}
 	printf("\n");
 }
