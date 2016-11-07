@@ -21,29 +21,31 @@ using namespace std;
 typedef pair<int,int> point;
 template <typename T>
 void pA(T *begin,int n){ for(int i=0;i<n;i++){ printf("%d " ,*(begin+i)); } printf("\n"); }
-ll A[100+10];
 void sol(){
-	int n;int m;
-	scanf("%d%d",&n,&m);
-	for(int i=0;i<n;i++)scanf("%lld",&A[i]);
-	int cnt=0;
-	int start;
-	start=(n-m%n)%n;
-	cnt++;printf("%lld",A[start]);
-	for(int i=(start+1)%n;;i++,i=i%n){
-		if(cnt==n)return;
-		printf(" %lld",A[i]);
-		cnt++;
+	int a,p;
+	int ansa,ansp;
+	bool flag=0;
+	while(scanf("%d%d",&a,&p)!=EOF){
+		if(a==0||p==0)continue;
+		if(flag){
+			printf(" ");
+		}
+		ansp=p-1;
+		ansa=a*p;
+		flag=1;
+		printf("%d %d",ansa,ansp);
 	}
+	if(!flag)printf("0 0");
+	printf("\n");
 }
 int main()
 {
 	sol();
 	return 0;
 }
-//bsc_1008.cc
-//generated automatically at Tue Nov  1 20:01:59 2016
+//bsc_1010.cc
+//generated automatically at Tue Nov  1 21:45:35 2016
 //by xsthunder
 
-//AC at Tue Nov  1 21:22:29 2016
+//AC at Tue Nov  1 22:39:25 2016
  
