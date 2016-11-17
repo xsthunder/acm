@@ -29,6 +29,7 @@ void FuncMenu()
 	cout<<"###q to exit at once"<<endl;
 	cout<<"###o to vim out"<<endl;
 	cout<<"###h to generate "+name+".html"<<endl;
+	cout<<"###l to gedit "+filename<<endl;
 	//cout<<"###b to move to codeblocks"<<endl;
 	//cout<<"###p to move from codeblocks"<<endl;
 }
@@ -105,4 +106,9 @@ void FuncAc(){//for c
 	createfile+=" \" >> ";
 	createfile.append(filename);
 	createfile.Run();
+}
+void FuncGedit(){//for l
+	Cmd cmd;
+	cmd+="gedit "+filename;
+	cmd.Run();
 }

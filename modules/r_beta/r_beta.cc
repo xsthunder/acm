@@ -8,12 +8,15 @@ using namespace std;
 string name;
 string filename;//with .cc 
 void init(){
+	filename=name+".cc";
+	cout<<"------------\n:";
+}
+void input(){
 	cout<<"###q to exit"<<endl;
 	cout<<"###the name of origin file(file.cc):";
 	cin>>name;
 	if(name[0]=='q'||name[0]=='Q')exit(0);
-	filename=name+".cc";
-	cout<<"------------\n:";
+	init();
 }
 /*option list 
  *
@@ -33,7 +36,8 @@ int loop(){
 		case'c':case'C':FuncAc();break;
 		case'm':case'M':FuncMenu();break;
 		case'h':case'H':FuncH();break;
-		case'a':case'A':if(!FuncConfirm()) return 1;else break;
+		case'l':case'L':FuncGedit();break;
+		case'a':case'A':if(!FuncConfirm()) {input();return 1;}else break;
 		case'q':case'Q':if(!FuncConfirm()) exit(0);else break;
 		default:cout<<"unvailed option, m for menu\n";
 	}
@@ -41,7 +45,6 @@ int loop(){
 	return 0;
 }//return 0 to exit the loop;
 int Main(){
-	init();
 	int status;
 	for(;;){
 		status=loop();//return 0 to loop, 1 to start again
@@ -49,7 +52,12 @@ int Main(){
 	}
 	return 0;
 }
-int main(){
+int main(int argc, char* argv[]){
+	if(argc>=2){
+		name=string(argv[1]);
+		init();
+	}
+	else input();
 	while(Main());
 	return 0;
 }
