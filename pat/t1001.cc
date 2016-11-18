@@ -1,4 +1,4 @@
-const bool test=1;
+const bool test=0;
 #include<iostream>
 #include<cctype>
 #include<algorithm>
@@ -75,7 +75,7 @@ int cal(int c){
 	int cnt=0;
 	for(E e:vE){
 		int c1=e.c1,c2=e.c2,cst=e.cst;
-		if(c1!=c&&!US.same(c1,c2)){
+		if(c1!=c&&c2!=c&&!US.same(c1,c2)){
 		//	cout<<cst<<c1<<c2;
 			ans+=cst;
 			US.unite(c1,c2);
@@ -94,6 +94,9 @@ void sol(){
 		vE.push_back(E{c1,c2,cst});
 	}
 	sort(vE.begin(),vE.end());
+	IF for(E x:vE){
+		cout<<x.c1<<x.c2<<x.cst<<endl;
+	}
 	int max0=1;
 	vector<int > ans;
 	for(int i=1;i<=n;i++){
@@ -111,12 +114,13 @@ void sol(){
 //		IF break;
 	}
 	bool fflag=0;
+	if(ans.size()==0)printf("0");
 	for(int x:ans){
 		if(fflag)printf(" ");
 		fflag=1;
 		printf("%d",x);
 	}
-
+	printf("\n");
 }
 int main()
 {
