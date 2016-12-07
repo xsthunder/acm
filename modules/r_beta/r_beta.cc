@@ -7,8 +7,14 @@
 using namespace std;
 string name;
 string filename;//with .cc 
+string inname;
+string outname;
+string outnamemy;
 void init(){
 	filename=name+".cc";
+	inname=name+".in";
+	outname=name+".out";
+	outnamemy=outname+".my";
 	cout<<"------------\n:";
 }
 void input(){

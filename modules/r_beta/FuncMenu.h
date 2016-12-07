@@ -5,6 +5,9 @@
 using namespace std;
 extern string filename;
 extern string name;
+extern string inname;
+extern string outname;
+extern string outnamemy;
 int FuncConfirm(){
 		cout<<"press Y to confirm:";
 		string com;
@@ -48,7 +51,8 @@ void Funcr(){
 	Cmd str1;
 	str1.append("./");		
 	str1.append(name);
-	str1.append(" <in");
+	str1.append(" ");
+	str1+=inname;
 	str1.Run();
 }
 void FuncGcc(){
@@ -74,19 +78,20 @@ void FuncCreate(){//for n
 		createfile.Run();
 }
 void FuncVimout(){//for o
-			Cmd str1="vim out";
+			Cmd str1="vim ";
+			str1+=outname;
 			str1.Run();
 }
 void FuncVimin(){//for i
-			Cmd str1="vim in";
+			Cmd str1="vim ";
+			str1+=outname;
 			str1.Run();
 }
 void FuncDiff(){//for d
 			Cmd str1="./";
-			str1.append(name);
-			str1.append(" <in >out.my");
+			str1+=name+string(" < ") +inname +string(" > ") +outnamemy;
 			if(!str1.Run()){
-				str1="diff out out.my";
+				str1.append(string("diff ")+outnamemy+string(" ")+ outname);
 				str1.Run();
 			}
 			else cout<<"fail Diff\n";
