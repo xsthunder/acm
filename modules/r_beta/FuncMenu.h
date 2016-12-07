@@ -84,13 +84,14 @@ void FuncVimout(){//for o
 }
 void FuncVimin(){//for i
 			Cmd str1="vim ";
-			str1+=outname;
+			str1+=inname;
 			str1.Run();
 }
 void FuncDiff(){//for d
 			Cmd str1="./";
 			str1+=name+string(" < ") +inname +string(" > ") +outnamemy;
 			if(!str1.Run()){
+				str1="";
 				str1.append(string("diff ")+outnamemy+string(" ")+ outname);
 				str1.Run();
 			}
