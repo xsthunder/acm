@@ -1,7 +1,6 @@
-r
 
 # My
-*.exe.*
+*.exe
 # Compiled Object files
 *.slo
 *.lo

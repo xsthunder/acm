@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1475924886 source:c:\cygwin64\home\xs\acm\week1\a\main.cpp
+	<iostream>
+	<cctype>
+	<algorithm>
+	<cstdio>
+	<cstdlib>
+	<vector>
+	<map>
+	<queue>
+	<set>
+	<cctype>
+	<cstring>
+	<utility>
+	<cmath>
+

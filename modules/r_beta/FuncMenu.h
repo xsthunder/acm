@@ -51,7 +51,7 @@ void Funcr(){
 	Cmd str1;
 	str1.append("./");		
 	str1.append(name);
-	str1.append(" ");
+	str1.append(" <");
 	str1+=inname;
 	str1.Run();
 }

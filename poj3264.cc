@@ -15,25 +15,25 @@ const int inf=0x7fffffff;
 #define IF if(test)
 #define FI if(!test)
 #define gts(s) fgets((s),sizeof(s),stdin)
-const bool test=1;
+const bool test=0;
 typedef long long int ll;
 using namespace std;
 typedef pair<int,int> point;
 template <typename T>
 void pA(T *begin,int n){ for(int i=0;i<n;i++){ cout<<*(begin+i)<<' '; } printf("\n"); }
 const int N=1e5+10;
-int A[2*N+1];//default -1
-unsigned int I[2*N+1];//default -1 = 1>>32
+int A[2*N+1000];//default -1
+int I[2*N+1000];//default -1 = 1>>32
 int dat[N];
 int n,q;
 int _n;
 int k;
 void init(){
-	memset(A,-1,sizeof(A));
-	memset(I,-1,sizeof(I));
 	//extend to 2^n;
 	_n=1;
 	while(_n<n)_n*=2;
+	fill(I,I+2*_n+10,inf);
+	fill(A,A+2*_n+10,-1);
 	k=_n-2+1;
 	//mark leaves
 	for(int i=0;i<n;i++){
@@ -50,9 +50,9 @@ void Inp(){
 }
 void BA(){
 	for(int i=_n-2;i>=0;i--){
-		IF cout<<i<<' ';
+		//IF cout<<i<<' ';
 		A[i]=max(A[2*i+1],A[2*i+2]);
-		IF cout<<A[i]<<' '<<A[2*i+1]<<' '<<A[2*i+2]<<endl;;
+		//IF cout<<A[i]<<' '<<A[2*i+1]<<' '<<A[2*i+2]<<endl;;
 		I[i]=min(I[2*i+1],I[2*i+2]);
 	}
 }
@@ -62,9 +62,9 @@ int QI(int a,int b,int k,int l,int r){
 	if(a<=l&&r<=b)return I[k];
 	else {
 		int vl=QI(a,b,k*2+1,l,(l+r)/2);
-		cout<<vl<<endl;;
+		//cout<<vl<<endl;;
 		int vr=QI(a,b,k*2+2,(l+r)/2,r);
-		cout<<' '<<vr<<endl;;
+		//cout<<' '<<vr<<endl;;
 		return min(vl,vr);
 	}
 }
@@ -85,9 +85,10 @@ void Out(){
 	while(q--){
 		int a,b;
 		scanf("%d%d", &a,&b);
+		a--;
 		IF cout<<a<<' '<<b<<endl;
-		FI printf("%d\n", Q(a,b,0,0,n));
-		IF printf("A %d, I %d\n", QA(a-1,b,0,0,n),QI(a-1,b,0,0,n));
+		FI printf("%d\n", Q(a,b,0,0,_n));
+		IF printf("A %d, I %d\n", QA(a,b,0,0,n),QI(a,b,0,0,_n));
 	}
 }
 void sol(){
@@ -139,3 +140,5 @@ int main()
 //generated automatically at Thu Oct  6 11:21:56 2016
 //by xsthunder
 
+//AC at Fri Oct  7 13:40:52 2016
+ 
