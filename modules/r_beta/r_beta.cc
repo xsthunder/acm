@@ -3,6 +3,7 @@
 //this program works with cygwin on Windows 10
 //time fuction will go wrong at linux system
 //by xsthunder
+//change filename while ac is added at the begining of Dec ,2016
 #include "FuncMenu.h"
 using namespace std;
 string name;

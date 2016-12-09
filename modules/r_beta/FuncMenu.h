@@ -112,6 +112,14 @@ void FuncAc(){//for c
 	createfile+=" \" >> ";
 	createfile.append(filename);
 	createfile.Run();
+	//change filename to filename_ac
+	createfile="mv ";
+	createfile+=filename;
+	createfile+=" ";
+	//change filename;
+	filename=name+"_ac.cc" ;
+	createfile+=filename;
+	createfile.Run();
 }
 void FuncGedit(){//for l
 	Cmd cmd;
