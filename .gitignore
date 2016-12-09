@@ -1,6 +1,9 @@
 
 # My
 *.exe
+/pat/in
+*.exe.*
+r
 # Compiled Object files
 *.slo
 *.lo
