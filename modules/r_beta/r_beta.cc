@@ -12,7 +12,8 @@ string inname;
 string outname;
 string outnamemy;
 void init(){
-	filename=name+".cc";
+	if(name.find(".cc")!=string::npos)filename=name;
+	else filename=name+".cc";
 	inname=name+".in";
 	outname=name+".out";
 	outnamemy=outname+".my";
@@ -46,6 +47,12 @@ int loop(){
 		case'l':case'L':FuncGedit();break;
 		case'a':case'A':if(!FuncConfirm()) {input();return 1;}else break;
 		case'q':case'Q':if(!FuncConfirm()) exit(0);else break;
+		case'!':{
+							Cmd st1;
+							st1.append(opt.substr(1));
+							st1.Run();
+							break;
+						}
 		default:cout<<"unvailed option, m for menu\n";
 	}
 	cout<<"------------\n:";

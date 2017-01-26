@@ -1,4 +1,4 @@
-const bool test=1;
+const bool TEST=1;
 #include<iostream>
 #include<cctype>
 #include<algorithm>
@@ -12,15 +12,21 @@ const bool test=1;
 #include<cstring>
 #include<utility>
 #include<cmath>
+#include<sstream>
+#include<stack>
 const int inf=0x7fffffff;
-#define IF if(test)
-#define FI if(!test)
+#define IF if(TEST)
+#define FI if(!TEST)
 #define gts(s) fgets((s),sizeof(s),stdin)
-typedef long long int ll;
+#define ALL(s) (s).begin(),(s).end()
+#define MK(a,b) make_pair((a),(b))
+typedef long long int LL;
+typedef unsigned int U;
+typedef unsigned long long ULL;
 using namespace std;
-typedef pair<int,int> point;
+typedef pair<int,int> Point;
 template <typename T>
-void pA(T *begin,int n){ for(int i=0;i<n;i++){ printf("%d " ,*(begin+i)); } printf("\n"); }
+void pA(T *begin,int n){ for(int i=0;i<n;i++){ cout<<*(begin++); } printf("\n"); }
 void sol(){
 
 }
