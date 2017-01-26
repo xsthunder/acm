@@ -12,11 +12,10 @@ string inname;
 string outname;
 string outnamemy;
 void init(){
-	if(name.find(".cc")!=string::npos){
-		filename=name;
-		name=filename.substr(0,name.find(".cc"));
+	if(name.find_last_of(".")!=string::npos){
+		name=name.substr(0,name.find_last_of("."));
 	}
-	else filename=name+".cc";
+	filename=name+".cc";
 	inname=name+".in";
 	outname=name+".out";
 	outnamemy=outname+".my";
