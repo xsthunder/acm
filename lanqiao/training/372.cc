@@ -14,6 +14,7 @@ const bool TEST=1;
 #include<cmath>
 #include<sstream>
 #include<stack>
+#include<complex>
 const int inf=0x7fffffff;
 #define IF if(TEST)
 #define FI if(!TEST)
@@ -27,16 +28,26 @@ using namespace std;
 typedef pair<int,int> Point;
 template <typename T>
 void pA(T *begin,int n){ for(int i=0;i<n;i++){ cout<<*(begin++); } printf("\n"); }
-ostream&  operator << (ostream &out,const Point &a){ out<<'('<<a.first<<','<<a.second<<')'; return out; }
-void inp();
 void sol(){
-	inp();
-}
-void inp(){
 
 }
 int main()
 {
-	sol();
+	double a1,b1,a2,b2;
+	char x;
+	cin>>x;
+	cin>>a1>>b1>>a2>>b2;
+	complex<double> c,a(a1,b1),b(a2,b2);
+	switch(x){
+		case'+':c=a+b;break;
+		case'-':c=a-b;break;
+		case'*':c=a*b;break;
+		case'/':c=a/b;break;
+	}
+	printf("%.2lf+%.2lfi",c.real(),c.imag());
 	return 0;
 }
+//372.cc
+//generated automatically at Fri Feb 10 21:04:58 2017
+//by xsthunder
+

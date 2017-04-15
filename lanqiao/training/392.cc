@@ -27,16 +27,23 @@ using namespace std;
 typedef pair<int,int> Point;
 template <typename T>
 void pA(T *begin,int n){ for(int i=0;i<n;i++){ cout<<*(begin++); } printf("\n"); }
-ostream&  operator << (ostream &out,const Point &a){ out<<'('<<a.first<<','<<a.second<<')'; return out; }
-void inp();
-void sol(){
-	inp();
+ULL gcd(ULL a,ULL b){
+	return b?gcd(b,a%b):a;
 }
-void inp(){
-
+ULL lcm(ULL a,ULL b){
+	return a*b/gcd(a,b);
+}
+void sol(){
+	ULL a,b;
+	cin>>a>>b;
+	cout<<lcm(a,b);
 }
 int main()
 {
 	sol();
 	return 0;
 }
+//392.cc
+//generated automatically at Fri Feb 10 20:59:51 2017
+//by xsthunder
+

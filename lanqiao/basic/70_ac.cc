@@ -27,16 +27,49 @@ using namespace std;
 typedef pair<int,int> Point;
 template <typename T>
 void pA(T *begin,int n){ for(int i=0;i<n;i++){ cout<<*(begin++); } printf("\n"); }
-ostream&  operator << (ostream &out,const Point &a){ out<<'('<<a.first<<','<<a.second<<')'; return out; }
-void inp();
+const int N = 200;
+int a[3][N+1];
+char s [N];
 void sol(){
-	inp();
-}
-void inp(){
-
+	for(int i = 0 ; i< 2 ;i++){
+		scanf("%s", s);
+		U len  = strlen (s  );
+		int cnt = N ;
+		for(int  j = len -1 ; j>=0  ;j--){
+			IF cout<<j<<' '<<cnt<<endl;
+			if(j==-1){
+				//break;
+			}
+			a[i][cnt--]=s[j]-'0';
+		}
+	}
+	IF {
+		pA(a[0],30);
+		pA(a[1],30);
+	}
+	for(int i = N ; i > 0 ; i--){
+		int ans= 0 ;
+		ans = (a[0][i]+a[1][i]);
+		a[2][i]=ans%10;
+		a[1][i-1]+=ans/10;
+	}
+	int b= 0; 
+	while(!a[2][b]){
+		b++;
+	}
+	for(; b <  N +1;b++){
+		printf("%d",a[2][b]);
+	}
+	cout<<endl;
 }
 int main()
 {
 	sol();
 	return 0;
 }
+//70.cc
+//generated automatically at Wed Feb  8 10:17:09 2017
+//by xsthunder
+
+//AC at Wed Feb  8 10:36:20 2017
+ 

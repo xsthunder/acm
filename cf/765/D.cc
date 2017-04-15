@@ -27,16 +27,56 @@ using namespace std;
 typedef pair<int,int> Point;
 template <typename T>
 void pA(T *begin,int n){ for(int i=0;i<n;i++){ cout<<*(begin++); } printf("\n"); }
-ostream&  operator << (ostream &out,const Point &a){ out<<'('<<a.first<<','<<a.second<<')'; return out; }
-void inp();
 void sol(){
-	inp();
-}
-void inp(){
-
+	int n ; 
+	int c= 0;
+	bool flagc=1;
+	bool flag=1;
+	cin>>n;
+	if(n==1){
+		flag=0;
+	}
+	for(int i = 1; i<=n;i++){
+		int x ;
+		scanf("%d", &x);
+		if(x!=i)flag=0;
+		if(!c)c=x;
+		else {
+			if(c!=x){
+				flagc=0;
+			}
+		}
+	}
+	if(flag){
+		cout<<n<<endl;
+		for(int i = 1;i<=n;i++){
+			if(i!=1)cout<<' ';
+			cout<<i;
+		}
+		cout<<endl;
+		for(int i = 1;i<=n;i++){
+			if(i!=1)cout<<' ';
+			cout<<i;
+		}
+		cout<<endl;
+	}
+	else if(flagc){
+		cout<<1<<endl;
+		for(int i = 1;i<=n;i++){
+			if(i!=1)cout<<' ';
+			cout<<1;
+		}
+		cout<<endl;
+		cout<<c<<endl;
+	}
+	else cout<<-1<<endl;
 }
 int main()
 {
 	sol();
 	return 0;
 }
+//D.cc
+//generated automatically at Tue Feb 14 17:21:56 2017
+//by xsthunder
+

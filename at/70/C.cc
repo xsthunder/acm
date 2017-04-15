@@ -28,15 +28,26 @@ typedef pair<int,int> Point;
 template <typename T>
 void pA(T *begin,int n){ for(int i=0;i<n;i++){ cout<<*(begin++); } printf("\n"); }
 ostream&  operator << (ostream &out,const Point &a){ out<<'('<<a.first<<','<<a.second<<')'; return out; }
-void inp();
+const int M=1e5;
 void sol(){
-	inp();
-}
-void inp(){
-
+	int x,i;
+	cin>>x;
+	i=0;
+	LL xx=x;
+	xx*=2;
+	LL sum = 0 ;
+	for(i =1;i<M;i++){
+		sum+=i;
+		if(sum>=x)break;
+	}
+	printf("%d\n", i);
 }
 int main()
 {
 	sol();
 	return 0;
 }
+//C.cc
+//generated automatically at Sat Mar 18 20:05:30 2017
+//by xsthunder
+

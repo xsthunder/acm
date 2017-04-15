@@ -1,4 +1,4 @@
-const bool TEST=1;
+const bool TEST=0;
 #include<iostream>
 #include<cctype>
 #include<algorithm>
@@ -85,14 +85,9 @@ void sol(){
 	s.push_back('#');
 	ope.push('#');
 	stringstream ss;
-	int n = 100;
-	while(n--){
-		ss.clear();
-		ss.seekg(0);
-		IF cout<<s<<endl;
-		ss.str(s);
-//		IF cout<<s<<endl;
-		if(isdigit(s[0])){
+	ss.str(s);
+	while(!ss.eof()){
+		if(isdigit(ss.str()[ss.tellg()])){
 			int x ; 
 			ss>>x;
 			num.push(x);
@@ -104,34 +99,33 @@ void sol(){
 			IF{
 				cout<<x<<endl;
 			}
-				cout<<"cur: "<<x<<" top: "<<ope.top()<<endl;
-			switch(cmp(x,ope.top())){
-				case 1:
-					ope.push(x);
-					IF cout<<"pushing "<<x<<endl;
-					break;
-				case 0:
-					IF cout<<"poping "<<x<<" "<<ope.top()<<endl;
-					ope.pop();
-					break;
-				case -1:
-					int x2,y;
-					do{
-					x2=num.top();
-					num.pop();
-					y=num.top();
-					num.pop();
-					char m = ope.top();
-					ope.pop();
-					int ans=cal(x2,m,y);
-					IF printf("cal %d,%c,%d %d\n",x2,m,y,ans);
-					num.push(ans);
-					}while(cmp(x,ope.top())==-1);
-					ope.push(x);
-					break;
-			}
+				IF cout<<"cur: "<<x<<" top: "<<ope.top()<<endl;
+re:
+				if(ope.empty())break;
+				switch(cmp(x,ope.top())){
+					case 1:
+						ope.push(x);
+						IF cout<<"pushing "<<x<<endl;
+						break;
+					case 0:
+						IF cout<<"poping "<<x<<" "<<ope.top()<<endl;
+						ope.pop();
+						break;
+					case -1:
+						int x2,y;
+						x2=num.top();
+						num.pop();
+						y=num.top();
+						num.pop();
+						char m = ope.top();
+						ope.pop();
+						int ans=cal(y,m,x2);
+						IF printf("cal %d,%c,%d %d\n",y,m,x2,ans);
+						num.push(ans);
+						goto re;
+						break;
+				}
 		}
-		ss>>s;
 	}
 	if(num.size()){
 		int ans = 0 ; 

@@ -27,16 +27,43 @@ using namespace std;
 typedef pair<int,int> Point;
 template <typename T>
 void pA(T *begin,int n){ for(int i=0;i<n;i++){ cout<<*(begin++); } printf("\n"); }
-ostream&  operator << (ostream &out,const Point &a){ out<<'('<<a.first<<','<<a.second<<')'; return out; }
-void inp();
-void sol(){
-	inp();
+map<string ,int>msi;
+int msicnt=0;
+int getid(string s ){
+	if(msi.count(s))return msi[s];
+	else return msi[s]=msicnt++;
 }
-void inp(){
-
+int a [ 200];
+void sol(){
+	string s ;
+	int n;
+	cin>>n>>s;
+	int home = getid(s);
+	while(n--){
+		cin>>s;
+		int f= getid(s.substr(0,3));
+		int t=getid(s.substr(5));
+		if(f==home){
+			a[t]++;
+		}
+		else {//t==home
+			a[f]--;
+		}
+	}
+	for(int i =0 ;i<200;i++){
+		if(a[i]!=0){
+			cout<<"contest"<<endl;
+			return ;
+		}
+	}
+	cout<<"home";
 }
 int main()
 {
 	sol();
 	return 0;
 }
+//A.cc
+//generated automatically at Tue Feb 14 16:38:15 2017
+//by xsthunder
+

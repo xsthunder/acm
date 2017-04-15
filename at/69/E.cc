@@ -20,6 +20,8 @@ const int inf=0x7fffffff;
 #define gts(s) fgets((s),sizeof(s),stdin)
 #define ALL(s) (s).begin(),(s).end()
 #define MK(a,b) make_pair((a),(b))
+#define BL(nod) (nod)*2,(t[(nod)]).l,((t[(nod)]).l+t[(nod)].r)/2
+#define BR(nod) (nod)*2+1,(t[(nod)].l+t[(nod)].r)/2+1,t[(nod)].r
 typedef long long int LL;
 typedef unsigned int U;
 typedef unsigned long long ULL;
@@ -28,15 +30,21 @@ typedef pair<int,int> Point;
 template <typename T>
 void pA(T *begin,int n){ for(int i=0;i<n;i++){ cout<<*(begin++); } printf("\n"); }
 const int N  = 1e5;
+int n; 
 struct NODE{
 	int l;
 	int r;
+	bool same;
 	Point p;
 }t[4*N];
 int a[N*4];
-int ans[N+10];
+LL ans[N+10];
 int curi;
+int cur;
+int _min;
 int D;
+int CNT=0;
+const int ROOT=1;
 namespace std{
 bool operator< (const Point &a,const Point &b){
 	if(a.first<b.first)return 1;
@@ -46,44 +54,74 @@ bool operator< (const Point &a,const Point &b){
 	else return 0;
 }
 }
-Point build(int ind,int l,int r){
+void pri(){
+	for(int i = 1;i<=n;i++){
+		printf("%lld\n",ans[i]);
+	}
+}
+inline void log(){
+	FI return ;
+	if(CNT==3)exit(0);
+	CNT++;
+	IF if(1){
+		for(int i = 1;i< 5;i++){
+			printf("i:%d l:%d r:%d p:(%d,%d) same:%d\n",i,t[i].l,t[i].r,t[i].p.first,t[i].p.second, t[i].same);
+		}
+	}
+}
+NODE build(int ind,int l,int r){
 	t[ind].l=l;
 	t[ind].r=r;
 	if(l==r){
-		return t[ind].p=MK(a[l],l);
+		t[ind].same=1;
+		t[ind].p=MK(a[l],l);
+		return t[ind];
 	}
-	return t[ind].p=max(build(2*ind,l,(l+r)/2),(build(2*ind+1,(l+r)/2+1,r)));
+	NODE c1,c2;
+	c1=build(BR(ind));
+	c2=(build(BL(ind)));
+	if(c1.same&&c2.same&&c1.p.first==c2.p.first){
+		t[ind].same=1;
+	}
+	t[ind].p=max(c1.p,c2.p);
+	return t[ind];
 }
-Point upg(int nod ,int index){
+NODE upg(int nod ,int l,int r){
 	NODE &x=t[nod];
-	IF if(nod==1)cout<<"upg"<<index<<endl;
-	if(x.l==x.r&&x.l==index){
-		x.p.first--;
-		return x.p;
+	IF cout<<"upg "<<nod<<' '<<l<<' '<<r<<endl;
+	if(x.p.first<=_min)return x;
+	if(x.r<l)return x;
+	else if (x.l>r)return x;
+	else if(l<=x.l&&x.r<=r&&x.same){
+		LL times=x.p.first-_min;
+		LL cnt=x.r-x.l+1;
+		ans[curi]+=cnt*times;
+		x.p.first-=times;
+		return x;
 	}
-	if(x.l<=index&&x.r>=index){
-		return x.p=max(upg(nod*2,index),upg(nod*2+1,index));
+	else {
+		NODE c1,c2;
+		c1=upg(nod*2,l,r);
+		c2=upg(nod*2+1,l,r);
+		x.p=max(c1.p,c2.p);
+		if(c1.p.first==c2.p.first&&
+				c1.same&&c2.same){
+			x.same=1;
+		}
+		return x;
 	}
-	else return x.p;
 }
 Point que(int nod,int l,int r){
 	if(l>r)return MK(0,inf);
 	NODE x=t[nod];
 	if(l<=x.l&&x.r<=r)return x.p;
 	if(x.r<l||x.l>r){
-//		cout<<"returing (0,inf) "<<nod<<' ';
-//		printf("(%d,%d)",x.l,x.r);
-//		printf("l,r:(%d,%d)\n",l,r);
+		//		cout<<"returing (0,inf) "<<nod<<' ';
+		//		printf("(%d,%d)",x.l,x.r);
+		//		printf("l,r:(%d,%d)\n",l,r);
 		return MK(0,inf);
-
 	}
 	return max(que(nod*2,l,r),que(nod*2+1,l,r));
-}
-int n; 
-void pri(){
-	for(int i = 1;i<=n;i++){
-		printf("%d\n",ans[i]);
-	}
 }
 void sol(){
 	cin>>n;
@@ -97,27 +135,21 @@ void sol(){
 		D++;
 	}
 	build (1,1,1<<D);
-	IF if(0){
-		for(int i = 1;i< 5;i++){
-			printf("i:%d l:%d r:%d p:(%d,%d)\n",i,t[i].l,t[i].r,t[i].p.first,t[i].p.second);
-		}
-	}
 	NODE &x=t[1];
+	log();
 	while(x.p.first!=0){
-		ans[x.p.second]++;
 		IF cout<<"-------------"<<endl;
-		Point y = que(1,x.p.second+1,n);
-		IF printf("(%d,%d)\n",y.first,y.second);
-		if(y.first==x.p.first){
-			upg(1,y.second);
-		}
-		else upg(1,x.p.second);
 		IF pri();
-	IF {
-		for(int i = 1;i< 5;i++){
-			printf("i:%d l:%d r:%d p:(%d,%d)\n",i,t[i].l,t[i].r,t[i].p.first,t[i].p.second);
+		curi=x.p.second;
+		cur=x.p.first;
+		_min=que(ROOT,1,curi-1).first;
+		upg(ROOT,curi,n);
+		IF {
+			printf("curi:%d, cur:%d, _min:%d\n",curi,cur,_min);
 		}
-	}
+		log();
+//		exit(0);
+		x=t[1];
 	}
 	pri();
 }
