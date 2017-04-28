@@ -1,42 +1,20 @@
-const bool TEST=1;
 #include<iostream>
-#include<cctype>
-#include<algorithm>
-#include<cstdio>
-#include<cstdlib>
-#include<vector>
-#include<map>
-#include<queue>
-#include<set>
-#include<cctype>
-#include<cstring>
-#include<utility>
-#include<cmath>
-#include<sstream>
-#include<stack>
-const int inf=0x7fffffff;
-#define IF if(TEST)
-#define FI if(!TEST)
-#define gts(s) fgets((s),sizeof(s),stdin)
-#define ALL(s) (s).begin(),(s).end()
-#define MK(a,b) make_pair((a),(b))
-typedef long long int LL;
-typedef unsigned int U;
-typedef unsigned long long ULL;
+#include<iomanip>
 using namespace std;
-typedef pair<int,int> Point;
-template <typename T>
-void pA(T *begin,int n){ for(int i=0;i<n;i++){ cout<<*(begin++); } printf("\n"); }
-ostream&  operator << (ostream &out,const Point &a){ out<<'('<<a.first<<','<<a.second<<')'; return out; }
+#define iF if(Te)
+#ifdef XS
+	#include<De>
+	const int Te=1;
+#else 
+	const int Te=0;
+#endif
 void inp();
-void sol(){
+int main(){
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
 	inp();
+	return 0;
 }
 void inp(){
 
-}
-int main()
-{
-	sol();
-	return 0;
 }

@@ -57,6 +57,11 @@ void Funcr(){
 }
 void FuncGcc(){
 	Cmd cmd;
+	cmd+="g++ -std=c++11 -D XS -I ~/acm/modules/myLib -Wall "+filename+" -o "+name;
+	cmd.Run();
+}
+void FuncGcc2(){
+	Cmd cmd;
 	cmd+="g++ -std=c++11 -Wall "+filename+" -o "+name;
 	cmd.Run();
 }

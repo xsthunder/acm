@@ -37,7 +37,10 @@ int loop(){
 	switch(opt[0]){
 		case'r': Funcr();break;
 		case'R': FuncR();break;
-		case'G':case'g':FuncGcc();break;
+		case'G':case'g':if(opt.size()>1)FuncGcc2();
+											else FuncGcc();
+											break;
+
 		case'n':case'N':FuncCreate();break;
 		case'i':case'I':FuncVimin();break;
 		case'o':case'O':FuncVimout();break;
