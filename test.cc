@@ -1,14 +1,21 @@
-#include<cstdio>
+#include<iostream>
+#include<vector>
+using namespace std;
+typedef long long ll;
+int n;
+vector<ll> A;
 int main(){
-	int n;
-	scanf("%d",&n);
-	if(n<=2)printf("1\n");
-	n-=2;
-	int f[3] = {1,1,1};
-	for(int i =0 ;i<n;i++){
-		f[0]=f[1];
-		f[1]=f[2];
-		f[2]=f[0]+f[1];
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cin>>n;
+	A.resize(n);
+	for(int i =0;i<n;i++){
+		cin>>A[i];
 	}
-	printf("%d\n", f[2]);
+	ll a=0;
+	for(int i =0;i<n;i++){
+
+	}
+	return 0;
 }
+
