@@ -1,35 +1,24 @@
-const bool test=1;
 #include<iostream>
-#include<cctype>
-#include<algorithm>
-#include<cstdio>
-#include<cstdlib>
-#include<vector>
-#include<map>
-#include<queue>
-#include<set>
-#include<cctype>
-#include<cstring>
-#include<utility>
-#include<cmath>
-const int inf=0x7fffffff;
-#define IF if(test)
-#define FI if(!test)
-#define gts(s) fgets((s),sizeof(s),stdin)
-typedef long long int ll;
+#include<iomanip>
 using namespace std;
-typedef pair<int,int> point;
-template <typename T>
-void pA(T *begin,int n){ for(int i=0;i<n;i++){ printf("%d " ,*(begin+i)); } printf("\n"); }
-void sol(){
-
-}
-int main()
-{
-	sol();
+#define iF if(Te)
+#ifdef XS
+	#include<De>
+	const int Te=1;
+#else 
+	const int Te=0;
+#endif
+void inp();
+int main(){
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	inp();
 	return 0;
 }
-//test_ac.cc
-//generated automatically at Fri Dec  9 12:20:19 2016
-//by xsthunder
+void inp(){
 
+}
+//test.cc by xsthunder at Thu May  4 17:59:51 2017
+
+//AC at Thu May  4 18:00:13 2017
+ 

@@ -77,7 +77,9 @@ void FuncCreate(){//for n
 		time(&rawtime);
 		createfile=("echo \"//");
 		createfile.append(filename);
-		createfile+="\n//generated automatically at ";createfile+=ctime(&rawtime);createfile+="//by xsthunder";createfile+="\n\"";
+		createfile+=" ";createfile+="by xsthunder at ";
+		createfile+=ctime(&rawtime);
+		createfile+="\"";
 		createfile.append(">>");
 		createfile+=filename;
 		createfile.Run();
