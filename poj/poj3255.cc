@@ -35,7 +35,7 @@ void dij(){
 			P nxt = v[t][i];
 			int u= nxt.first;
 			int ww = nxt.second;
-			int d2=dist[t]+ww;
+			int d2=w+ww;
 			iF cout<<dist[u]<<' '<<u<<' '<<dist[t]<<' ' <<ww<<endl;
 			if(dist[u]>d2){
 				iF cout<<dist[u]<<' '<<u<<endl;
@@ -45,7 +45,7 @@ void dij(){
 			}
 			if(dist2[u]>d2&&dist[u]<d2){
 				dist2[u]=d2;
-				pq.push(mk(dist[u],u));
+				pq.push(mk(dist2[u],u));
 			}
 		}
 	}

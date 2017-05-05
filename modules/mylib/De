@@ -16,3 +16,12 @@ void pM(T m,int a,int b=0,int w=0){
 		cout<<endl;
 	}
 }
+
+template <typename T>
+void pA(T a,int n,int w = 0){
+	for(int i=0;i<n;i++)cout<<setw(w)<<i;
+	cout<<endl;
+	for(int i=0;i<n;i++){
+		cout<<setw(w)<<a[i];
+	}
+}

@@ -22,3 +22,5 @@ int main(){
 void inp(){
 
 }
+//C.cc by xsthunder at Fri May  5 18:47:13 2017
+
