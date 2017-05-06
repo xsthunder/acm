@@ -25,3 +25,8 @@ void pA(T a,int n,int w = 0){
 		cout<<setw(w)<<a[i];
 	}
 }
+
+ostream & operator << (ostream &ou , pair<int ,int > p){
+	ou<<'('<<p.first<<','<<p.second<<')';
+	return ou;
+}

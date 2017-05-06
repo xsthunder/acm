@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cstdlib>
 #include<cstring>
 #include<iomanip>
 using namespace std;
@@ -12,6 +13,7 @@ using namespace std;
 #endif
 
 typedef unsigned U;
+typedef pair<int,int > P;
 void inp();
 int main(){
 	ios_base::sync_with_stdio(0);
