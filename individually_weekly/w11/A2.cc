@@ -1,4 +1,5 @@
 #include<iostream>
+#include<sstream>
 #include<algorithm>
 #include<cstdlib>
 #include<cstring>
@@ -22,52 +23,51 @@ int main(){
 	while(1)inp();
 	return 0;
 }
+int flag=0;
 int a[100];
 int used[100];
-bool dfs(int n,int left){
-	if(!left)return 1;
-	if(n<0)return 0;
-	for(int i = n;i>=0;i--){
-		if(!used[i]&&a[i]<=left){
-			used[i]=1;
-			if(dfs(i-1,left-a[i])){
-				return 1;
-			}
-			used[i]=0;
-		}
+int vis[70][60*80];
+int m = 0;
+bool bfs(int n,int left,string s){
+	if(flag)return 1;
+	if(!left){
+		cout<<1<<' '<<s<<endl;
+		return 1;
 	}
+	if(n<0){
+		cout<<0<<' '<<s<<endl;
+		return 0;
+	}
+	for(int i = n;i>=0;i--){
+
+	}
+//	iF cout<<0<<' '<<s<<endl;;
 	return 0;
 }
 void inp(){
-	int m = 0;
 	int n;
 	int sum =0;
+	m=0;
 	cin>>n;
 	MS(a);
 	if(!n)exit(0);
+	flag=0;
 	for(int i=0;i<n;i++){
 		cin>>a[i];
 		m=max(a[i],m);
 		sum+=a[i];
 	}
 	sort(a,a+n);
+	cout<<sum<<endl;
 	while(1){
-		int flag=1;
 		if(sum%m==0){
 			MS(used);
-			for(int i =n-1;i>=0;i--){
-				if(!used[i]){
-					used[i]=1;
-					if(!dfs(i-1,m-a[i])){
-						flag=0;
-						break;
-					}
-				}
-			}
-			if(flag){
-				cout<<m<<endl;
-				return;
-			}
+			iF m=114;
+		}
+		bfs(n-1,m,"");
+		if(flag){
+			cout<<m<<endl;
+			return ;
 		}
 		m++;
 	}

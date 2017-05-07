@@ -80,3 +80,5 @@ void inp(){
 }
 //G.cc by xsthunder at Sat May  6 11:10:15 2017
 
+//AC at Sat May  6 11:40:12 2017
+ 

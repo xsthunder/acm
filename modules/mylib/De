@@ -24,6 +24,7 @@ void pA(T a,int n,int w = 0){
 	for(int i=0;i<n;i++){
 		cout<<setw(w)<<a[i];
 	}
+	cout<<endl;
 }
 
 ostream & operator << (ostream &ou , pair<int ,int > p){
