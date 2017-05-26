@@ -3,6 +3,7 @@
 *.exe
 /pat/in
 *.exe.*
+*.stackdump
 r
 # Compiled Object files
 *.slo

@@ -1,51 +1,85 @@
 #include<iostream>
+#include<cmath>
 #include<iomanip>
+#include<utility>
+#include<vector>
+#include<queue>
+#include<algorithm>
+#include<cstring>
+#include<map>
+#define mk(a,b) make_pair(a,b)
 using namespace std;
-#define iF if(Te)
-#ifdef XS
-	#include<De>
-	const int Te=1;
-#else 
-	const int Te=0;
-#endif
-
-typedef unsigned U;
 void inp();
+void fld();
+const int N =100+100;
+typedef int E[N][N];
+E e;
+int n,ec;
+typedef pair<int,int> pqe;
+const int test=0;
+#define IF if(test)
+void pM(int width=4){
+	cout<<0;
+	for(int j =1;j<=n;j++){
+		cout<<setw(width)<<j;
+	}
+	cout<<endl;
+	for(int i =1;i<=n;i++){
+		cout<<i<<' ';
+		for(int j =1;j<=n;j++){
+			cout<<setw(width)<<e[i][j];
+		}
+		cout<<endl;
+	}
+	cout<<endl;
+}
+void fld(){
+	for(int k=1;k<=n;k++){
+		for(int i =1;i<=n;i++){
+			for(int j=1;j<=n;j++){
+				e[i][j]=max(e[i][j],min(e[i][k],e[k][j]));
+			}
+			//IF pM();
+		}
+	}
+}
 int main(){
-	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-	int t;
-	cin>>t;;
-	while(t--){
+	ios_base::sync_with_stdio(0);
+	int cnt=0;
+	while(cin>>n>>ec){
+		if(n==0&&ec==0)return 0;
 		inp();
+		int s,t,p;
+		cin>>s>>t>>p;
+		fld();
+		p++;
+		int div;
+		div  =  e[s][t]-1;
+		IF cout<<s<<' '<<t<<endl;;
+		IF cout<<p<<' '<<div<<endl;
+		IF if(div==0){
+			pM();
+			return 0;
+		}
+		cout<<"Scenario #"<<++cnt<<endl;
+		if(cnt==7)cout<<div<<endl;
+		cout<<"Minimum Number of Trips = "<<ceil((p*1.0f)/div)<<endl;;
+		cout<<endl;
 	}
 	return 0;
 }
-const int N  	=2e3;
-int va [N];
-int vo [N];
-int dp[N][N];
+const int inf = 1e9;
 void inp(){
-	int n,v;
-	cin>>n>>v;
-	for(int i =0;i< n;i++){
-		cin>>va[i];
-	}
-	for(int i =0;i< n;i++){
-		cin>>vo[i];
-	}
-	for(int i=0;i<n;i++){
-		for(int j=0;j<=v;j++){
-			if(j<vo[i]){
-				dp[i+1][j]=dp[i][j];
-			}
-			else dp[i+1][j]=max(dp[i][j],dp[i+1][j-vo[i]]+va[i]);
+	for(int i =1;i<=n;i++){
+		for(int j=1;j<=n;j++){
+			e[i][j]=0;
 		}
 	}
-	pM(dp,n+1,v+2,3);
-	cout<<dp[n][v]<<endl;
+	for(int i =0;i<ec;i++){
+		int a,b,c;
+		cin>>a>>b>>c;
+		e[a][b]=c;
+		e[b][a]=c;
+	}
 }
-//B.cc
-//generated automatically at Sun Apr 30 19:20:07 2017
-//by xsthunder
-

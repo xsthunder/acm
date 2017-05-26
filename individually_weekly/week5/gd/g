@@ -1,0 +1,54 @@
+#include<algorithm>
+#include<cstring>
+#include<map>
+#include<cstdio>
+using namespace std;
+const int mN=100000+5000;//father
+map<int ,int > vi[mN];
+struct Node{
+	int d;
+	int f;
+};
+Node T[mN];
+int cntT;
+const int root=1;
+int Node[mN];
+void inp();
+void bui(int ,int,int );
+void tbui();
+int n;
+int main(){
+	int Tcase;
+	scanf("%d", &Tcase);
+	while(Tcase--){
+		memset(T,0,sizeof(T));
+	//	cntT=0;
+		inp();
+//		printf("%d %d",Tcase, n);
+		bui(1,1,1);
+		tbui();
+	}
+//	printf("%d",Tcase);
+}
+void tbui(){
+	for(int i =1;i<=n;i++){
+		printf("%d %d \n ",T[i].d,T[i].f);
+	}
+}
+void bui(int d,int f,int cur){
+	if(T[cur].d)return ;
+	T[cur].d=d;
+	T[cur].f=f;
+	for(auto it =vi[cur].begin();it!=vi[cur].end();it++){
+		bui(d+1,cur,it->first);
+	}
+}
+void inp(){
+	int a,b,c;
+	scanf("%d",&n);
+	for(int i = 0; i< n;i++){
+		scanf("%d%d%d",&a,&b,&c);
+		vi[a][b]=c;
+		vi[b][a]=c;
+	}
+}
