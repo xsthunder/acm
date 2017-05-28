@@ -6,7 +6,7 @@ using namespace std;
 #define iF if(Te)
 #define MS(m) memset(m,0,sizeof(m))
 #ifdef XS
-	#include<~/acm/modules/mylib/De>
+	#include</home/xs/acm/modules/mylib/De>
 	const int Te=1;
 #else 
 	const int Te=0;

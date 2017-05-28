@@ -45,19 +45,21 @@ void FuncR(){
 	Cmd str1;
 	str1.append("./");		
 	str1.append(name);
+	str1.append(".out");
 	str1.Run();
 }
 void Funcr(){
 	Cmd str1;
 	str1.append("./");		
 	str1.append(name);
+	str1.append(".out");
 	str1.append(" <");
 	str1+=inname;
 	str1.Run();
 }
 void FuncGcc(){
 	Cmd cmd;
-	cmd+="g++ -std=c++11 -D XS -I /home/xs/acm/modules/myLib/ -Wall "+filename+" -o "+name;
+	cmd+="g++ -std=c++11 -D XS -I /home/xs/acm/modules/myLib/ -Wall "+filename+" -o "+name+".out";
 	//cout<<cmd<<endl;
 	cmd.Run();
 }
