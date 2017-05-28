@@ -24,3 +24,5 @@ int main(){
 void inp(){
 
 }
+//test.cc by xsthunder at Sat May 27 19:02:13 2017
+
