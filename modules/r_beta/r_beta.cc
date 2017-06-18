@@ -38,6 +38,7 @@ int loop(){
 		case'r': case 'R':
 				  if(opt.size()>1)Funcr();
 				  else FuncR();
+					break;
 		case'G':case'g':if(opt.size()>1)FuncGcc2();
 											else FuncGcc();
 											break;
