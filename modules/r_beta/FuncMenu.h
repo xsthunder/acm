@@ -45,7 +45,8 @@ void FuncR(){
 	Cmd str1;
 	str1.append("./");		
 	str1.append(name);
-	str1.append(".out");
+	str1.append(".out ");
+	str1.append(" || echo exit_code:$?");
 	str1.Run();
 }
 void Funcr(){
@@ -55,6 +56,8 @@ void Funcr(){
 	str1.append(".out");
 	str1.append(" <");
 	str1+=inname;
+	str1.append(" || echo exit_code:$?");
+
 	str1.Run();
 }
 void FuncGcc(){
