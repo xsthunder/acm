@@ -60,15 +60,15 @@ void Funcr(){
 
 	str1.Run();
 }
-void FuncGcc(){
+void FuncGccI(){
 	Cmd cmd;
 	cmd+="g++ -std=c++11 -D XS -I /home/xs/acm/modules/myLib/ -Wall "+filename+" -o "+name+".out";
 	//cout<<cmd<<endl;
 	cmd.Run();
 }
-void FuncGcc2(){
+void FuncGcc(){
 	Cmd cmd;
-	cmd+="g++ -std=c++11 -Wall "+filename+" -o "+name;
+	cmd+="g++ -std=c++11 -Wall "+filename+" -o "+name +".out";
 	cmd.Run();
 }
 void FuncCreate(){//for n
