@@ -102,7 +102,7 @@ void FuncVimin(){//for i
 }
 void FuncDiff(){//for d
 			Cmd str1="./";
-			str1+=name+string(" < ") +inname +string(" > ") +outnamemy;
+			str1+=name+".out"+string(" < ") +inname +string(" > ") +outnamemy;
 			if(!str1.Run()){
 				str1="";
 				str1.append(string("diff ")+outnamemy+string(" ")+ outname);
