@@ -8,7 +8,12 @@ using namespace std;
 int main()
 {
 	srand(time(0));
-	int n = rand()%10000;
-	int l = rand()%n;
-	cout<<n<<' '<<l<<endl;
+	int t = 1;
+	cout<<t<<endl;
+	while(t--){
+	int n = rand()%10+1;
+	cout<<n<<' ';
+	for(int i =0;i<n;i++)cout<<rand()%100<<' ';
+	cout<<endl;
+}
 }

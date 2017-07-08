@@ -46,7 +46,7 @@ void init(int root , int l ,int r ){
 	m[root][1][1] = m[lch][1][1]+m[rch][1][1];
 }
 const double PI= acos(-1); 
-void getM(int a,M tmp){
+inline void getM(int a,M tmp){
 #define getRad(x) (PI/180.0*x)
 	double rad = getRad(a);
 	tmp[0][0]=cos(rad);
@@ -54,7 +54,7 @@ void getM(int a,M tmp){
 	tmp[1][0]=sin(rad);
 	tmp[1][1]=cos(rad);
 }
-void MtM(M a,M b,M ans){
+inline void MtM(M a,M b,M ans){
 	M tmp;
 	for(int i = 0;i<2;i++){
 		for(int j=0;j<2;j++){
@@ -67,7 +67,7 @@ void MtM(M a,M b,M ans){
 	}
 	CP(ans,tmp,sizeof(M));
 }
-void MpM(M a,M b,M ans){
+inline void MpM(M a,M b,M ans){
 	M tmp;
 	for(int i =0;i<2;i++){
 		for(int j=0;j<2;j++){

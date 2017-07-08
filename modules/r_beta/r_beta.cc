@@ -17,8 +17,8 @@ void init(){
 	}
 	filename=name+".cc";
 	inname=name+".in";
-	outname=name+".out";
-	outnamemy=outname+".my";
+	outname=name+".ou";
+	outnamemy=name+".my";
 	cout<<"------------\n:";
 }
 void input(){
@@ -36,11 +36,11 @@ int loop(){
 	cin>>opt;//cin will make sure the length of opt >1;
 	switch(opt[0]){
 		case'r': case 'R':
-				  if(opt.size()>1)Funcr();
-				  else FuncR();
+				  if(opt.size()>1)FuncR();
+				  else Funcr();
 					break;
-		case'G':case'g':if(opt.size()>1)FuncGcc();
-											else FuncGccI();
+		case'G':case'g':if(opt.size()>1)FuncGccI();
+											else FuncGcc();
 											break;
 
 		case'n':case'N':FuncCreate();break;

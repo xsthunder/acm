@@ -1,8 +1,12 @@
 #include<iostream>
 #include<iomanip>
+#include<utility>
 using namespace std;
+static int Decnt=0;
+typedef pair<int,int> P;
 template <typename T>
-void pM(T m,int a,int b=0,int w=0){
+void pM(T m,int a,int b=10,int w=4){
+	cout<<"De cnt "<<++Decnt<<endl;
 	cout<<setw(w)<<'#';
 	for(int i=0;i<b;i++){
 		cout<<setw(w)<<i;
@@ -18,11 +22,23 @@ void pM(T m,int a,int b=0,int w=0){
 }
 
 template <typename T>
-void pA(T a,int n,int w = 0){
+void pA(T a,int n,int w = 4){
+	cout<<"De cnt "<<++Decnt<<endl;
 	for(int i=0;i<n;i++)cout<<setw(w)<<i;
 	cout<<endl;
 	for(int i=0;i<n;i++){
 		cout<<setw(w)<<a[i];
+	}
+	cout<<endl;
+}
+
+template <typename T>
+void pA(T a){
+	int w = 5;
+	for(int i=0;(unsigned)i<a.size();i++)cout<<setw(w)<<i;
+	cout<<endl;
+	for(auto x : a){
+		cout<<setw(w)<<x;
 	}
 	cout<<endl;
 }

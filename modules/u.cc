@@ -5,6 +5,7 @@
 #include<utility>
 #ifdef XS
 	const int Te=1;
+#include<De>
 #else 
 	const int Te=0;
 #endif

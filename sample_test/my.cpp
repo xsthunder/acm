@@ -1,49 +1,70 @@
 #include<iostream>
+#include<cstdio>
 #include<cstdlib>
 #include<cstring>
-#include<iomanip>
-using namespace std;
-#define iF if(Te)
-#define MS(m) memset(m,0,sizeof(m))
+#include<utility>
 #ifdef XS
-	#include<De>
 	const int Te=1;
+#include<De>
 #else 
 	const int Te=0;
 #endif
+using namespace std;
+#define IF if(Te)
+#define MS(m) memset(m,0,sizeof(m))
 
 typedef unsigned U;
 typedef pair<int,int > P;
-void inp();
+typedef long long ll;
+int inp();
 int main(){
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	while(1)inp();
+	//freopen("mergesort.in","r",stdin);
+	try{
+		int n;scanf("%d",&n);for(int i=1;i<=n;i++)
+		printf("Scenario #%d:\n%d\n\n",i,inp());
+	}
+	catch(... ){
+		IF printf("%s","exception");
+	}//for compatibility with cygwin c++ runtime
 	return 0;
 }
-typedef long long ll;
-const ll N = 2e5;
-const ll mod = 1e9+7;
-ll a[N];
-ll b[N];
-void inp(){
-	int n,l;
-	if(!(cin>>n>>l))exit(0);
-	MS(a);
-	MS(b);
-	for(int i=1;i<=l;i++){
-		a[i]=b[i-1]+1;
-		b[i]=b[i-1]+a[i];
-		b[i]%=mod;
+const int N = 2000;
+int a[N];
+int tmp[N];
+int merge(const int L,const int mid,const int r){
+	int ans = 0; 
+	int cnt = L;
+	int l =cnt;
+	int m = mid;
+	while(l<mid&&m<r){
+		if(a[l]<=a[m])(tmp[cnt++]=a[l]),l++;
+		else (ans+=mid-l),(tmp[cnt++]=a[m]),m++;
 	}
-	for(int i=l+1;i<=n;i++){
-		a[i]=(b[i-1]-b[i-1-l]+mod)%mod;
-		b[i]=b[i-1]+a[i];
-		b[i]%=mod;
-	}
-//	pA(a,n+1,3);
-//	pA(b,n+1,3);
-	cout<<a[n]%mod<<endl;
+	while(l<m)tmp[cnt++]=a[l++];
+	while(m<r)tmp[cnt++]=a[m++];
+	memcpy(a+L,tmp+L,sizeof(int)*(r-L));
+	return ans;
 }
-//C.cc by xsthunder at Fri May 26 09:55:29 2017
-
+int mergeSort(int l,int r){
+	if(r==l+1){
+		return 0;
+	}
+	int mid = (l+r)/2;
+	int ans = 0;
+	ans +=mergeSort(l,mid);
+	ans+= mergeSort(mid,r);
+	ans +=merge(l,mid,r);
+//	IF printf("%d %d %d \n",l, r, ans);
+	return ans;
+}
+int inp(){
+	int n;
+	scanf("%d", &n);
+	for(int i =0;i<n;i++){
+		scanf("%d", &a[i]);
+	}
+	int ans = mergeSort(0,n);
+	//pA(a,n);
+	return ans ;
+}
+//mergesort.cc by xsthunder at Sat Jul  8 16:04:31 2017
