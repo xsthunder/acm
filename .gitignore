@@ -5,6 +5,11 @@
 *.exe.*
 *.stackdump
 r
+dump
+*.in
+*.ou
+*.in.max
+
 # Compiled Object files
 *.slo
 *.lo
