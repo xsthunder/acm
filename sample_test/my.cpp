@@ -1,70 +1,120 @@
-#include<iostream>
 #include<cstdio>
+#include<vector>
 #include<cstdlib>
 #include<cstring>
 #include<utility>
 #ifdef XS
-	const int Te=1;
-#include<De>
-#else 
-	const int Te=0;
+	#include<De>
 #endif
 using namespace std;
-#define IF if(Te)
 #define MS(m) memset(m,0,sizeof(m))
 
 typedef unsigned U;
 typedef pair<int,int > P;
 typedef long long ll;
-int inp();
+void inp();
 int main(){
-	//freopen("mergesort.in","r",stdin);
+#ifdef XS
+	freopen("poj3321.in.max","r",stdin);
+#endif
 	try{
-		int n;scanf("%d",&n);for(int i=1;i<=n;i++)
-		printf("Scenario #%d:\n%d\n\n",i,inp());
+		//while(1)
+		//int n;scanf("%d",&n);for(int i=1;i<=n;i++)
+		inp();
 	}
 	catch(... ){
-		IF printf("%s","exception");
+#ifdef XS
+		printf("%s","exception");
+#endif
 	}//for compatibility with cygwin c++ runtime
 	return 0;
 }
-const int N = 2000;
-int a[N];
-int tmp[N];
-int merge(const int L,const int mid,const int r){
-	int ans = 0; 
-	int cnt = L;
-	int l =cnt;
+const int N = 1e5 + 100;
+typedef vector<int > VI;
+VI vi[N];
+int p1[N];
+int p2[N];
+int ti = 0;
+void dfs(int u, int fa ){
+	p1[u] = ++ti;
+	for(VI::iterator it = vi[u].begin();it!= vi[u].end();it++){
+		if(*it==fa)continue;
+		dfs(*it,u);
+	}
+	p2[u] = ti;
+}
+#define mid (L+R)/2
+#define get(x) nod[x]
+struct T{
+	int l,r,sum;
+}nod[4*N];
+const int root = 1;
+void bui(const int rt, const int L,const int R){
+	get(rt).l = L;
+	get(rt).r = R;
+	if(L == R){
+		get(rt).sum =  1;
+		return;
+	}
+#define lson (rt*2)
+#define rson (rt*2+1)
+#define pushup get(rt).sum = get(lson).sum + get(rson).sum ;
 	int m = mid;
-	while(l<mid&&m<r){
-		if(a[l]<=a[m])(tmp[cnt++]=a[l]),l++;
-		else (ans+=mid-l),(tmp[cnt++]=a[m]),m++;
-	}
-	while(l<m)tmp[cnt++]=a[l++];
-	while(m<r)tmp[cnt++]=a[m++];
-	memcpy(a+L,tmp+L,sizeof(int)*(r-L));
-	return ans;
+	bui(lson,L  ,m);
+	bui(rson,m+1,R);
+	pushup
 }
-int mergeSort(int l,int r){
-	if(r==l+1){
-		return 0;
+void upd(const int rt,const int a){
+	int R = get(rt).r;
+	int L = get(rt).l;
+	if(R==L){
+		get(rt).sum ^= 1;
+		return ;
 	}
-	int mid = (l+r)/2;
-	int ans = 0;
-	ans +=mergeSort(l,mid);
-	ans+= mergeSort(mid,r);
-	ans +=merge(l,mid,r);
-//	IF printf("%d %d %d \n",l, r, ans);
-	return ans;
-}
-int inp(){
-	int n;
-	scanf("%d", &n);
-	for(int i =0;i<n;i++){
-		scanf("%d", &a[i]);
+	int m = mid;
+	if(a<=m){
+		upd(lson, a);
 	}
-	int ans = mergeSort(0,n);
-	//pA(a,n);
-	return ans ;
+	else upd(rson,a);
+	pushup;
+	return;
 }
-//mergesort.cc by xsthunder at Sat Jul  8 16:04:31 2017
+int que(const int rt,const int l,const int r){
+	const int R = get(rt).r,L = get(rt).l;
+	const int m = mid;
+	if(r<L || R < l)return 0;
+	if(l <=L && R <= r){
+		return get(rt).sum;
+	}
+	int ans1 = que(lson , l, r);
+	int ans2 = que(rson , l, r);
+	return ans1+ans2;
+}
+void inp(){
+	int n ,m;
+	scanf("%d",&n);
+	for(int i = 1 ;i< n;i++){
+		int a,b;
+		scanf("%d%d", &a,&b);
+#define vpush(a,b) vi[a].push_back(b)
+		vpush(a,b);
+		vpush(b,a);
+	}
+	dfs(1, -1);
+	bui(root,1,n);
+	scanf("%d",&m);
+#ifdef XS
+	//	pA(p1,n+1,"p1");
+//	pA(p2,n+1,"p2");
+	
+#endif
+	while(m--){
+		char s[5] ;
+		int a;
+		scanf("%s%d", s,&a );
+		if(s[0] == 'C')upd(root,p1[a]);
+		else printf("%d\n", que(root, p1[a],p2[a]));
+	}
+}
+//poj3321.cc by xsthunder at Wed Jul 19 19:57:34 2017
+
