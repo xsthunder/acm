@@ -15,8 +15,9 @@ typedef pair<int,int > P;
 typedef long long ll;
 void inp();
 int main(){
-	freopen("input","r",stdin);
-	freopen("output.my","w",stdout);
+#ifdef XS
+	freopen("spoj1825.in","r",stdin);
+#endif
 	try{
 		while(1)
 		inp();
