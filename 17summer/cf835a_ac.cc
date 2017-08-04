@@ -16,4 +16,14 @@ int main(){
 	return 0;
 }
 void inp(){
+	int s,v1,v2,t1,t2;scanf("%d%d%d%d%d",&s,&v1,&v2,&t1,&t2);
+	int ans = s*(v1-v2)+2*(t1-t2);
+	if (ans<0)printf("%s","First");
+	else if(ans==0)printf("%s","Friendship");
+	else printf("%s","Second");
+	printf("\n");
 }
+//cf835a.cc by xsthunder at Thu Aug  3 08:25:09 2017
+
+//AC at Thu Aug  3 08:34:59 2017
+ 

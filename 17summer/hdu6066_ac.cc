@@ -10,10 +10,15 @@ int main(){
 #ifdef XS
 	//freopen(".in","r",stdin);
 #endif
-	//while(1)
-	//int n;scanf("%d",&n);for(int i=1;i<=n;i++)
-	inp();
+	int t,x,ans=0;scanf("%d",&t);
+	while(t--){
+		scanf("%d",&x);
+		ans+=x<=35;
+	}
+	printf("%d\n",ans);
 	return 0;
 }
-void inp(){
-}
+//hdu6066.cc by xsthunder at Wed Aug  2 10:13:05 2017
+
+//AC at Wed Aug  2 10:15:31 2017
+ 
