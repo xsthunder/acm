@@ -1,8 +1,8 @@
 from math import *
-def qp(x,p,mod=0):#quickpow
+def quickPow(x,p,mod=0):#quickpow
     if(type(x) != type(2) or type(p)!=type(2) or type(mod)!=type(2)):
         print("qp :err type%s %s %s"%(type(x),type(p),type(mod)))
-        return 
+        return -1 
     b = 1
     while(p>0):
         if(p&1==1):
@@ -12,8 +12,13 @@ def qp(x,p,mod=0):#quickpow
         if(mod>0):
             b%=mod
             x%=mod
-    return b
-def isp(p):#is prime
+        x=int(x)
+        p=int(p)
+    #print(b)
+    return int(b)
+def isPrime(p):#is prime
+    if(type(p)!=type(2)):
+            print("getpfac:err %d",type(p))
     if p <=1:
         return False
     if p == 2:
@@ -22,7 +27,7 @@ def isp(p):#is prime
         if(p%i):
             return True
     return False
-def getpfac(x):#get primtive factor
+def getPrimitiveFactor(x):#get primtive factor
     if(type(x)!=type(2)):
             print("getpfac:err %d",type(x))
     if(x<0):
@@ -36,19 +41,19 @@ def getpfac(x):#get primtive factor
                 x/=i
                 x = int(x)
                 i = int(i)
-                mp[i]+=1
+                mp[int(i)]+=1
     if(x>1):
-        mp[x]=1
+        mp[int(x)]=1
     return mp
 
-def getp(x):
+def getPrime(x):
     if(type(x)!=type(2)):
             print("getp:err %d",type(x))
             return []
     if(x<=1):
         return []
     if(x>=1e7):
-        getp("getp:%d too large"%x)
+        print("getp:%d too large"%x)
         return []
     mp = {}
     l = []
@@ -62,19 +67,33 @@ def getp(x):
             tmp+=i
     return l
 
-def ispr(g,p):#if primitive root
+def isPrimitiveRoot(g,p):#if primitive root
     if(type(g) is not type(2) or type(p) is not type(2)):
         print("isPR:err type%s %s"%(type(x),type(p)))
         return 
-    if(not isp(p)):
+    if(not isPrime(p)):
         print("p:%d is not prime"%p)
         return False
     cnt1 = 0
-    l = list(getpfac(p-1).keys())
+    l = list(getPrimitiveFactor(p-1).keys())
     for i in l:
-        if(qp(g,i,p)==1):
+        if(quickPow(g,i,p)==1):
             return False
     return True
-#print(ispr(3,998244353))
-#print(getpfac(998244353-1))
-print((getp(int(20000))))
+def findPrimitiveRoot(p):#pass nod51 test
+    p=int(p)
+    if(not isPrime(p)):
+        print("p is not prime!")
+        return None
+    l = list(getPrimitiveFactor(p-1))
+    #print(l)
+    for g in range(2,p-1+1):
+        flag = True
+        for i in l:
+            if(int(quickPow(g,int((p-1)/i),p))==1):
+                flag=False
+                break
+        if(flag):
+            return g
+    return None
+

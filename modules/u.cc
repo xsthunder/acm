@@ -10,7 +10,6 @@ int main(){
 #ifdef XS
 	//freopen(".in","r",stdin);
 #endif
-	//while(1)
 	//int n;scanf("%d",&n);for(int i=1;i<=n;i++)
 	inp();
 	return 0;
