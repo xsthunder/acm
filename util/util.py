@@ -80,7 +80,7 @@ def isPrimitiveRoot(g,p):#if primitive root
         if(quickPow(g,i,p)==1):
             return False
     return True
-def findPrimitiveRoot(p):#pass nod51 test
+def getPrimitiveRoot(p):#pass nod51 test
     p=int(p)
     if(not isPrime(p)):
         print("p is not prime!")
