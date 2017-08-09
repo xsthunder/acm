@@ -1,4 +1,5 @@
 #include<cstdio>
+#include<queue>
 #include<cstdlib>
 #include<cstring>
 #include<utility>
@@ -8,24 +9,81 @@ typedef unsigned U; typedef pair<int,int > P; typedef long long ll;
 void inp();
 int main(){
 #ifdef XS
-	//freopen(".in","r",stdin);
+	freopen("at80c.in","r",stdin);
 #endif
 	inp();
 	return 0;
 }
-int cnt2,cnt4;
-void inp(){
-	int f,i,x;
-	int n;scanf("%d",&n);
-	for(i=0;i<n;i++){scanf("%d",&x);
-		if(x%4==0)cnt4++;
-		else if(x%2==0)cnt2++;
-	}
-	if(cnt2)n-=cnt2,n++;
-	if(cnt4>=n/2)f=1;
-	else f=0;
-	char ans[][10]={"NO","YES"};
-	puts(ans[f]);
+const int N = 2e5+100;
+struct Tt{ int v,id; };
+bool operator < (Tt a,Tt b){return a.v<b.v;}
+typedef pair<Tt,P> PP;
+priority_queue<PP,vector<PP> ,greater<PP>> pq;
+Tt To[N*4],Te[N*4];
+int A[N];
+#define lson (rt<<1)
+#define rson ((rt<<1)+1)
+#define mid int m = (L+R)>>1;
+#define pl lson,L,m
+#define pr rson,m+1,R
+const int inf = 0x7fffffff;
+void bui(Tt *T,int t,int rt,int L,int R){
+	if(L==R){ T[rt].id=L,T[rt].v=(L&1)==t?A[L]:inf; return; }
+	mid;
+	bui(T,t,pl);
+	bui(T,t,pr);
+#define pushup T[rt]=min(T[lson],T[rson])
+	pushup;
 }
-//at80c.cc by xsthunder at Sun Aug  6 20:08:31 2017
+void rem(Tt *T,int l,int rt,int L,int R){
+	if(L==R){
+		T[rt].v=inf,T[rt].id=1;
+		return;
+	}
+	mid;
+	if(l<=m){ rem(T,l,pl); }
+	else if(l>m){ rem(T,l,pr); }
+	pushup;
+}
+Tt que(Tt *T,int l,int r,int rt,int L,int R){
+	if(l<=L&&R<=r)return T[rt];
+	if(r<L||R<l){Tt ans;ans.id=-1,ans.v=inf;return ans;
+		mid;
+		return min(que(T,l,r,pl),que(T,l,r,pr));
+	}
+}
+void inp(){
+	int n;scanf("%d",&n);
+	for(int i =1;i<=n;i++)scanf("%d",&A[i]);
+	bui(To,1,1,1,n);bui(Te,0,1,1,n);
+	PP pp(que(To,1,n,1,1,n),P(1,n));
+	pq.push(pp);
+	PP nx;
+	while(!pq.empty()){
+		pp = pq.top();pq.pop();
+		Tt tt= que(Te,pp.first.id,pp.second.second,1,1,n);
+		rem(To,pp.first.id,1,1,n);
+		rem(Te,tt.id,1,1,n);
+		printf("%d %d ",pp.first.v,tt.v );
+		if(pp.first.id!=pp.second.first){
+			nx.second.first=pp.second.first;
+			nx.second.second=pp.first.id-1;
+			nx.first=que(To,nx.second.first,nx.second.second,1,1,n);
+			pq.push(nx);
+		}
+		if(pp.first.id!=tt.id-1){
+			nx.second.first=pp.first.id+1;
+			nx.second.second=tt.id-1;
+			nx.first=que(To,nx.second.first,nx.second.second,1,1,n);
+			pq.push(nx);
+		}
+		if(tt.id!=pp.second.second){
+			nx.second.first=tt.id+1;
+			nx.second.second=pp.second.second;
+			nx.first=que(To,nx.second.first,nx.second.second,1,1,n);
+			pq.push(nx);
+		}
+	}
+}
+//at80c.cc by xsthunder at Wed Aug  9 22:03:34 2017
 
