@@ -98,6 +98,40 @@ int main(){
 }
 using namespace Geo::Line;
 using namespace ScalarBaseCplx;
-void inp(){
+int TT=0;
+const int  N=100;
+Point A[N],B[N];;
+double Min,Max;
+void upd(Point P,Point A,Point B){
+	Min=min(Min,DistanceToSegment(P,A,B));
+	Max=max(Max,Length(P-A));
+	Max=max(Max,Length(P-B));
 }
-//geo.cc by xsthunder at Wed Aug 16 19:59:38 2017
+void inp(){
+	int a,b;scanf("%d%d",&a,&b);
+	for(int i =0;i<a;i++)A[i]=read_point();
+	for(int i =0;i<b;i++)B[i]=read_point();
+	Point pa=A[0],pb=B[0];
+	Min = 1e9,Max = -1e9;
+	double LA=0,LB=0;
+	for(int i=0;i<a-1;i++)LA+=Length(A[i+1]-A[i]);
+	for(int i=0;i<b-1;i++)LB+=Length(B[i+1]-B[i]);
+	double av=LA,bv=LB;
+	for(int sa=0,sb=0;sa+1<a&&sb+1<b;){
+		double la=Length(A[sa+1]-pa),lb=Length(B[sb+1]-pb);
+		double t=min(la/av,lb/bv);
+		Vector va=(A[sa+1]-pa)/la*av*t,vb=(B[sb+1]-pb)/lb*bv*t;
+		upd(pa,pb,pb+vb-va);
+		pa+=va,pb+=vb;
+		if(Eq(pa,A[sa+1]))sa++;
+		if(Eq(pb,B[sb+1]))sb++;
+	}
+#ifdef XS
+	printf("(%f,%f)\n",Min,Max);
+#endif
+	printf("Case %d: %d\n",++TT,int(Max-Min+0.5));
+}
+//uva11796.cc by xsthunder at Wed Aug 16 19:59:38 2017
+
+//AC at Sat Aug 19 09:42:00 2017
+ 
