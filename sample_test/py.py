@@ -22,8 +22,8 @@ def sam():
         p(' ')
     p('\n')
     for i in range(2,n+1):
-        #p(r(1,i-1))
-        p(i-1)
+        p(r(1,i-1))
+        #p(i-1)
         p(' ')
         p(i)
         p('\n')
