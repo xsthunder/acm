@@ -1,158 +1,62 @@
-
-#include <iostream>
-#include <string.h>
-#include <math.h>
-#include <queue>
-#include <algorithm>
-#include <stdlib.h>
-#include <map>
-#include <set>
-#include <stdio.h>
-#include <time.h>
+#include<cstdio>
+#include<algorithm>
+#include<cstdlib>
+#include<cstring>
+#include<utility>
 using namespace std;
-#define LL __int64
-#define pi acos(-1.0)
-//#pragma comment(linker, "/STACK:1024000000")
-const int mod=1e9+7;
-const int INF=0x3f3f3f3f;
-const double eqs=1e-9;
-const int MAXN=200000+10;
-int n, k, head[MAXN], cnt, root, min1, ans;
-int F[MAXN];//F[i]表示在该子树之前所遍历的所有子树的路径上不超过i个黑点的路径的最长长度
-int G[MAXN];//表示严格有i个黑点的最长路径
-int siz[MAXN], color[MAXN], vis[MAXN], num[MAXN];
-struct node
-{
-        int u, v, w, next;
-}edge[MAXN<<1];
-struct N
-{
-        int v, num, w;
-}T[MAXN];
-bool cmp(N x, N y)
-{
-        return x.num<y.num;
+#define MS(m) memset(m,0,sizeof(m))
+
+typedef unsigned U; typedef pair<int,int > P; typedef long long ll;
+void inp();
+int main(){
+#ifdef XS
+    freopen("sam.in","r",stdin);
+#endif
+		while(1) inp();
+    return 0;
 }
-void add(int u, int v, int w)
-{
-        edge[cnt].v=v;
-        edge[cnt].w=w;
-        edge[cnt].next=head[u];
-        head[u]=cnt++;
+const int N = 100000 + 1000;
+struct Ed{ int f,t,n; }E[N*2]; int head[N]; int n,Ecnt;
+inline void ae(int f,int t){
+    E[Ecnt].f = f; E[Ecnt].t = t; E[Ecnt].n = head[f]; head[f] = Ecnt;
+    Ecnt++;
 }
-void init()
-{
-        memset(head,-1,sizeof(head));
-        memset(color,0,sizeof(color));
-        memset(vis,0,sizeof(vis));
-        cnt=0;
+int fa[N],de[N];
+void dfs(int rt,int f,int d){
+	de[rt]=d;
+	fa[rt]=f;
+	Ed e;
+	for(int i=head[rt];i!=-1;i=e.n){
+		e=E[i];
+		if(e.t==f)continue;
+		dfs(e.t,rt,d+1);
+	}
 }
-void getroot(int u, int fa, int s)
-{
-        int i, max1=-1;
-        for(i=head[u];i!=-1;i=edge[i].next){
-                int v=edge[i].v;
-                if(v==fa||vis[v]) continue ;
-                getroot(v,u,s);
-                max1=max(max1,siz[v]);
-        }
-        max1=max(max1,s-siz[u]);
-        if(min1>max1){
-                min1=max1;
-                root=u;
-        }
+int val[N];
+void inp(){
+	memset(head,-1,sizeof(head));Ecnt = 0;
+	int m;if(scanf("%d%d",&n,&m)==EOF)exit(0);
+	if(!n&&!m)exit(0);
+	for(int i =1;i<=n;i++)scanf("%d",&val[i]);
+	int u,v;
+	for(int i =1;i<=n-1;i++){ scanf("%d%d",&u,&v);
+		ae(u,v); ae(v,u); }
+	dfs(1,-1,0);
+	int x,y,a,b;
+	for(int i=1;i<=m;i++){
+		ll ans=0;
+		scanf("%d%d%d%d",&x,&y,&a,&b);
+		while(x!=y){
+			if(de[x]<de[y])swap(x,y);
+			int v=val[x];
+			if(a<=v&&v<=b)ans+=v;
+			x=fa[x];
+		}
+		int v=val[x];
+		if(a<=v&&v<=b)ans+=v;
+		if(i!=1)putchar(' ');
+		printf("%lld",ans);
+	}
+	putchar('\n');
 }
-void getsize(int u, int fa)
-{
-        siz[u]=1;
-        for(int i=head[u];i!=-1;i=edge[i].next){
-                int v=edge[i].v;
-                if(v==fa||vis[v]) continue ;
-                getsize(v,u);
-                siz[u]+=siz[v];
-        }
-}
-void getnum(int u, int fa)
-{
-        num[u]=color[u];
-        for(int i=head[u];i!=-1;i=edge[i].next){
-                int v=edge[i].v;
-                if(v==fa||vis[v]) continue ;
-                getnum(v,u);
-                num[u]=max(num[u],num[v]+color[u]);
-        }
-}
-void getG(int u, int fa, int dep, int val)
-{
-        G[dep]=max(G[dep],val);
-        for(int i=head[u];i!=-1;i=edge[i].next){
-                int v=edge[i].v;
-                if(v==fa||vis[v]) continue ;
-                getG(v,u,dep+color[v],val+edge[i].w);
-        }
-}
-void work(int u)
-{
-        vis[u]=1;
-        int i, j;
-        int tot=0;
-        for(i=head[u];i!=-1;i=edge[i].next){
-                int v=edge[i].v;
-                if(vis[v]) continue ;
-                getnum(v,-1);
-                T[tot].v=v;
-                T[tot].num=num[v];
-                T[tot].w=edge[i].w;
-                tot++;
-        }
-        sort(T,T+tot,cmp);
-        int lim=k-color[u];
-        for(i=0;i<=T[tot-1].num;i++) F[i]=-INF;
-        for(i=0;i<tot;i++){
-                for(j=0;j<=T[i].num;j++) G[j]=-INF;
-                getG(T[i].v,u,color[T[i].v],T[i].w);
-                if(i){
-                        for(j=0;j<=T[i].num&&j<=lim;j++){
-                                int tmp=min(lim-j,T[i-1].num);
-                                if(F[tmp]==-INF) continue ;
-                                ans=max(ans,F[tmp]+G[j]);
-                        }
-                }
-                for(j=0;j<=T[i].num&&j<=lim;j++){
-                        F[j]=max(F[j],G[j]);
-                        if(j) F[j]=max(F[j],F[j-1]);
-                        ans=max(ans,F[j]);
-                }
-        }
-        for(i=head[u];i!=-1;i=edge[i].next){
-                int v=edge[i].v;
-                if(vis[v]) continue ;
-                getsize(v,-1);
-                min1=INF;
-                getroot(v,-1,siz[v]);
-                work(root);
-        }
-}
-int main()
-{
-        int m, i, u, v, w, x;
-        while(scanf("%d%d%d",&n,&k,&m)!=EOF){
-                init();
-                for(i=0;i<m;i++){
-                        scanf("%d",&x);
-                        color[x]=1;
-                }
-                for(i=1;i<n;i++){
-                        scanf("%d%d%d",&u,&v,&w);
-                        add(u,v,w);
-                        add(v,u,w);
-                }
-                ans=0;
-                getsize(1,-1);
-                min1=INF;
-                getroot(1,-1,n);
-                work(root);
-                printf("%d\n",ans);
-        }
-        return 0;
-}
+
