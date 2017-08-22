@@ -7,11 +7,8 @@ while true;do
 	echo "end input gen"
 	time ./sam.exe <input >output.sam
 	if [ $? -ne 0 ] ; then break; fi
-	echo "my time:"
 	time ./my.exe <input >output.my
 	if [ $? -ne 0 ] ; then break; fi
-	diff output.my output.sam 
-	echo ""
+	diff output.my output.sam
 	if [ $? -ne 0 ] ; then break; fi
-	read 
 done
