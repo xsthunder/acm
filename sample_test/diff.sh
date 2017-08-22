@@ -5,13 +5,13 @@ echo "finish build"
 while true;do
 	python3 ./py.py>input
 	echo "end input gen"
+	#./sam.out <input >output.my
+	if [ $? -ne 0 ] ; then break; fi
+	diff output.my output.sam >log.diff
 	time ./sam.out 
 	#./sam.out <input >output.sam
 	if [ $? -ne 0 ] ; then break; fi
 	time ./my.out 
-	#./sam.out <input >output.my
-	if [ $? -ne 0 ] ; then break; fi
-	diff output.my output.sam >log.diff
 	#diff output.my output.sam 
 	if [ $? -ne 0 ] ; then break; fi
 done
