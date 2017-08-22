@@ -3,16 +3,18 @@
 #include<cstdlib>
 #include<cstring>
 #include<utility>
+#include<cassert>
 using namespace std;
 #define MS(m) memset(m,0,sizeof(m))
 
 typedef unsigned U; typedef pair<int,int > P; typedef long long ll;
 void inp();
 int main(){
-	freopen("input","r",stdin);
-	freopen("output.my","w",stdout);
 #ifdef XS
     freopen("input","r",stdin);
+#else 
+	freopen("input","r",stdin);
+	freopen("output.my","w",stdout);
 #endif
 		while(1) inp();
     return 0;
@@ -62,10 +64,12 @@ ll que(int rt,int l,int r,int L,int R){
 	return que(nod[rt].l,l,r,pl)
 		+que(nod[rt].r,l,r,pr);
 }
-int unq[N*2];
+int unq[N*3];
 int rid[N],unqsize;
 int getvalid(int x){
-	return lower_bound(unq+1,unq+1+unqsize,x)-unq;
+	int *it=lower_bound(unq+1,unq+1+unqsize,x);
+	assert(*it=x);
+	return it-unq;
 }
 ll Q(int u,int v,int a,int b){
 	if(dep[v]+dep[u]<300){
@@ -102,8 +106,8 @@ void sol(int m){
 	for(int i =1;i<=m;i++){
 		u=queries[i].x,v=queries[i].y,a=queries[i].a,b=queries[i].b;
 		ll ans = Q(u, v,a,b);
-		if(i!=1)putchar(' ');
-		printf("%lld",ans);
+//if(i!=1)putchar(' ');
+		printf("%lld\n",ans);
 	}
 	putchar('\n');
 }
@@ -135,6 +139,7 @@ void initroot(){
 		v = val[rid[i]]; vid=getvalid(v);
 		bui(root[i],v,vid,1,unqsize);
 	}
+	return ;
 #ifdef XS
 	for(int i=1;i<=n;i++){
 		printf("----vvvvvvvvvvroot[%d]\n",i);
@@ -169,5 +174,6 @@ void inp(){
 	dfs2(rt, rt);
 	initroot();
 	sol(m);
+	exit(0);
 }
 
