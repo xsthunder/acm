@@ -108,8 +108,8 @@ void inp(){
 	for(int i =0;i<m;i++){
 		scanf("%d%d",&a,&b);ae(a,b,0);
 	}
-	if(topo())puts("Yes");
-	else puts("No");
+	if(topo())puts("I love you my love and our love save us!");
+	else puts("Light my fire!");
 }
 //suodian.cc by xsthunder at Wed Aug 23 13:16:10 2017
 
