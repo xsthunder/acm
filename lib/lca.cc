@@ -16,7 +16,7 @@ int main(){
 	return 0;
 }
 namespace Tree{
-	static const int N = 40000;
+	static const int N = 40000+100;
 	static const int NE=2*N;
 	int n;
 	int ecnt=0,head[N];
@@ -28,8 +28,8 @@ namespace Tree{
 namespace Lca{
 	//depend Tree cmath/log2 std::swap
 	using namespace Tree;
-	static const int DEP=20;//log2(n)
-	int p[N][DEP];
+	static const int DEP=16;//log2(n)
+	int p[N][DEP];//N*DEP
 	int dep[N];
 	int dist[N];
 	int lca(int a,int b){
