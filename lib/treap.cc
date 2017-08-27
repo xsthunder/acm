@@ -23,6 +23,7 @@ namespace Treap{
 	};
 	Node* Node::null=NULL;
 	Node* null=NULL;
+	// todo make newNode new Node
 	Node* newNode(int x){Node *p=new Node();p->ch[0]=p->ch[1]=null,p->r=rand(),p->v=x,p->w=1; return p;}
 	void init(){srand(time(0)); Node::null=null=newNode(-1);null->r=-1;null->ch[0]=null->ch[1]=null,null->w=0; }
 	void rotate(Node *&o,int d){//d=0左旋，d=1右旋
