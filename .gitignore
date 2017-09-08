@@ -9,6 +9,7 @@ dump
 *.in
 *.ou
 *.in.max
+*.my
 
 # Compiled Object files
 *.slo
