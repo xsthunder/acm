@@ -1,38 +1,25 @@
-import random
-r = random.randint
-t = 2
-M = 100000
-N = 20000
-A = 1
-B = 1000000000
+from random import *
+from string import *
+r = randint
+char = ascii_letters[:26]
+num = digits
+t = 3
+M = 20
+A = 10
 
-
-def p(x):
-    if(type(x)==type(1)):
-        x = str(x)
-    print (x,sep='',end='')
-def sam():
-    version = 0;
-    n = r(1,N)
-    m = r(1,M)
-    n=N
-    m=M
-
-    print("%d %d"%(n,m))
-    for i in range(0,n):
-        p(r(A,B))
-        p(' ')
-    p('\n')
-    for i in range(2,n+1):
-        p(r(1,i-1))
-        p(' ')
-        p(i)
-        p('\n')
-    for i in range(0,m):
-        a=r(1,B)
-        print("%d %d %d %d"%(r(1,n),r(1,n),a,r(a,B)))
-    p('\n')
-
+def ask():
+    n = r(6,M)
+    print(''.join([choice(num) for i in range(n)]))
+    m = r(0,n)
+    a = []
+    cnt = 0
+    while(True):
+        b=r(0,10)
+        cnt+=b+1
+        if(cnt>n):
+            break
+        a.append(char[b])
+    print(''.join(a))
 for i in range(0,t):
-    sam()
-    p('\n')
+    ask()
+
