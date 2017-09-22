@@ -33,12 +33,12 @@ def getPrimitiveFactor(x):#get primtive factor
     if(x<0):
         x= -x
     mp = {}
-    for i in range(2,int(sqrt(x))):
+    for i in range(2,int(sqrt(x))+1):
         if x%i == 0:
             mp[i]=1
-            x/=i
+            x//=i
             while(x%i==0 and x>0):
-                x/=i
+                x//=i
                 x = int(x)
                 i = int(i)
                 mp[int(i)]+=1
