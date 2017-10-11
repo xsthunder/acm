@@ -20,7 +20,8 @@ void FuncMenu()
 	cout<<"----------------------\n";
 	cout<<"----------------------\n";
 	cout<<"----------------------\n";
-	cout<<"###r to run the program with file \"in\""<<endl;
+	cout<<"###rr to run the program with file \"in\""<<endl;
+	cout<<"###r to run the program without file \"in\""<<endl;
 	cout<<"###R to run"<<endl;
 	cout<<"###v to vim "<<filename<<endl;
 	cout<<"###c to add AC to "<<filename<<" "<<endl;

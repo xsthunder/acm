@@ -36,8 +36,8 @@ int loop(){
 	cin>>opt;//cin will make sure the length of opt >1;
 	switch(opt[0]){
 		case'r': case 'R':
-				  if(opt.size()>1)FuncR();
-				  else Funcr();
+				  if(opt.size()>1)Funcr();
+				  else FuncR();
 					break;
 		case'G':case'g':if(opt.size()>1)FuncGccI();
 											else FuncGcc();
