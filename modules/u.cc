@@ -4,7 +4,7 @@
 #include<utility>
 using namespace std;
 #define MS(m,z) memset(m,z,sizeof(m))
-typedef unsigned U; typedef pair<int,int > P; typedef long long ll;
+typedef unsigned U;typedef long long ll;typedef pair<int,int > P;
 void inp();
 int main(){
 #ifdef XS
