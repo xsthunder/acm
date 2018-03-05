@@ -40,3 +40,6 @@ dump
 *.exe
 *.out
 *.app
+.idea/
+__pycache__
+*.java

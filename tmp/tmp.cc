@@ -1,35 +1,49 @@
-#include<iostream>
+#include<cstdio>
+#include<cctype>
 #include<cstdlib>
 #include<cstring>
-#include<iomanip>
 #include<utility>
+#include<string>
+#include<unordered_map>
 using namespace std;
-#define IF if(Te)
-#define MS(m) memset(m,0,sizeof(m))
-#ifdef XS
-	#include</home/xs/acm/modules/mylib/De>
-	const int Te=1;
-#else 
-	const int Te=0;
-#endif
-
-typedef unsigned U;
-typedef pair<int,int > P;
-typedef long long ll;
+#define MS(m,z) memset(m,z,sizeof(m))
+typedef unsigned U;typedef long long ll;typedef pair<int,int > P;
 void inp();
 int main(){
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
+#ifdef XS
+	//freopen(".in","r",stdin);
+#endif
+	//int ttt;scanf("%d",&ttt);for(int i=1;i<=ttt;i++)
 	inp();
 	return 0;
 }
-void p(int a[]){
-	printf("%d s:%d\n", a,sizeof(a));
-}
+unordered_map<string ,string> mp;
+const int N = 5e5;
+char s[N],s2[N];
 void inp(){
-	int a[5]={0};
-	printf("%d s:%d\n", a,sizeof(a));
-	p(a);
+	scanf("START\n");
+	while(scanf("%s", s)&&s[0]!='E'){
+		scanf("%s\n",s2);
+		mp[string(s2)] = string(s);
+	}
+	getchar();
+	scanf("START\n");
+	while(fgets(s,sizeof(s),stdin)&&s[0]!='E'){
+		char *p = s;int len;
+		while( *p != '\0'){
+			len = 0;
+			while( islower(p[len]) ){
+				len++;
+			}
+			string ss(p , len);
+			if(mp.count(ss))printf("%s",mp[ss].c_str());
+			else printf("%s",ss.c_str());
+			p = p + len;
+			while( !islower(*p) && *p !='\0'){
+				putchar(*(p++));
+			}
+		}
+	}
 }
-//tmp.cc by xsthunder at Sun Jun 18 10:58:25 2017
+//tmp.cc by xsthunder at Sun Dec 10 19:05:37 2017
 

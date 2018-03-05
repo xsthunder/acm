@@ -164,3 +164,4 @@ def Ikantor(num,n):
 #print(a,kantor(a))
 #num=3
 #print(num,Ikantor(num,4))
+

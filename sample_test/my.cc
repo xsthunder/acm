@@ -1,56 +1,69 @@
-
-#include <bits/stdc++.h>
+#include<cstdio>
+#include<stack>
+#include<cmath>
+#include<cstdlib>
+#include<cstring>
+#include<iostream>
+#include<algorithm>
+#include<queue>
+#include<utility>
 using namespace std;
-const int N = 400;
-int a[N], b[N], s_a[N], s_b[N];
-char str[N];
-int len, cnt, ans;
-int Max[N];
+typedef pair<int ,int > P;
+typedef double db;
+void inp();
+int main(){
+	freopen("tmp.in","r",stdin);
+    while(1)inp();
+    return 0;
+}
+const int N = 200;
+int vis[N][N][N];
+struct Node{
+    int d[3];
+    Node(int a,int b,int c){
+        d[0] = a,d[1]=b,d[2]=c;
+    }
+    int operator[](int i){
+        return d[i];
+    }
+};
+void inp(){
+    int s,n,m;scanf("%d%d%d",&s,&n,&m);if(!s&&!n&&!m)exit(0);
+    int full[3];
+    full[0]=s,full[1]=n,full[2]=m;
+    if(n == m){ printf("1\n"); return; }
+    if(s&1){ printf("NO\n"); return; }
+    memset(vis,-1,sizeof(vis));
+    vis[s][0][0] = 0;
+    queue<Node> q;
+    q.push(Node(s,0,0));
+    while(!q.empty()){
+        Node node = q.front();q.pop();
+        for(int c = 0;c<3;c++){
+            if(!node[c])continue;//chu wei kong
+            for(int r = 0;r<3;r++){
+                Node now(0,0,0);
+                if(c == r)continue;//chu shi ru
+                if(node[r] == full[r])continue;//ru yi man
+                int ex = -1;
+                for(int i = 0;i<3;i++){ if(i == c || i == r)continue;ex=i;}
+                now.d[ex]=node[ex];
+                int tmp = min(node[c], full[r] - node[r]);
+                now.d[r] = node[r] + tmp;
+                now.d[c] = node[c] - tmp;
+                if(vis[now[0]][now[1]][now[2]]>=0)continue;
+                tmp = vis[now[0]][now[1]][now[2]] = vis[node[0]][node[1]][node[2]]+1;
+                q.push(now);
+                sort(now.d,now.d+3);
+                if(now[0] + now[1] == now[2]){
+									if(now[0])tmp++;
+                    printf("%d\n",tmp);
+                    return;
+                }
+            }
+        }
+    }
+    printf("NO\n");
+    return;
+}
 
-void dfs(int now, int st, int ret) {
-	if(now >= cnt + 1) {
-		ans = max(ans, ret);
-		return;
-	}
-	for(int i=st;i + b[now] <= len + 1;i++) {
-		int ed = i + b[now];
-		
-		int left = len - ed + 1;
-		if(s_b[cnt] - s_b[now] > left)continue;
-		
-		int tmp = ret + s_a[ed - 1] - s_a[i - 1];
-		if(now >= 2) {
-			if(tmp <= Max[now])continue;
-			else Max[now] = tmp;
-		}
-		//if(now == 2)cout<<ed - 1<<" "<<i - 1<<endl;
-		//if(now == 1)cout<<tmp<<endl;
-		dfs(now + 1, ed, tmp);
-	}
-}
-int main() {
-//	freopen("in.txt","r",stdin);
-	while(cin.getline(str + 1, 300, '\n')) {
-		memset(s_a, 0, sizeof(s_a));
-		memset(s_b, 0, sizeof(s_b));
-		memset(Max, -1, sizeof(Max));
-		ans = 0;
-		
-		
-		len = strlen(str + 1);
-		//cout<<str+1<<" "<<len<<endl;
-		for(int i=1;i<=len;i++)a[i] = str[i] - '0';
-		for(int i=1;i<=len;i++)s_a[i] = s_a[i - 1] + a[i];
-		
-		cin.getline(str + 1, 300, '\n'); 
-		cnt = strlen(str + 1);
-		//cout<<str+1<<" "<<cnt<<endl;
-		for(int i=1;i<=cnt;i++)b[i] = str[i] - 'a' + 1;
-		for(int i=1;i<=cnt;i++)s_b[i] = s_b[i - 1] + b[i];
-		//cout<<s_b[cnt]<<endl;
-		dfs(1, 1, 0);
-		
-		cout<<ans<<endl;
-	}
-	return 0;
-}
