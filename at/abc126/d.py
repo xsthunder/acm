@@ -11,13 +11,6 @@ for i in range(n-1):
     add(f,t,w)
     add(t,f,w)
 # 从1出发，贪心即可，1画1，理论不会有回环
-# def dfs(f, s, fa=-1):
-#     if s % 2 == 0: 
-#         used[f] = 1
-#     for t, w in v[f]:
-# #         print('%d->%d->%d'%(fa, f, t,), s, w)
-#         if t == fa:continue
-#         dfs(t, w + s, f)
 from queue import Queue
 q = Queue() # 队列
 #def dfs(f, s, fa=-1):
