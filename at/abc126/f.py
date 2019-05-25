@@ -9,7 +9,7 @@ if k > N:
     print(-1)
 # elif N == 1 and k == 0:
 #     print(0, 0)
-elif N == 1 and k == 1:
+elif N == 1 and k == 1:  # 0 0, k = 0
     print('-1')
 elif k ==  0:
     for i in r:
@@ -17,9 +17,9 @@ elif k ==  0:
     r.reverse()
     for i in r:
         print(i, end=' ')
-elif N == 2 and k == 1:
+elif N == 2 and k == 1: # 0 xor 1 = 1, n = 1
     print(-1)
-else:
+else: # 0 xor 1 xor 2 ... xor 2^m - 1 = 0, n > 1, that is k = 0 xor 1 xor 2 xor k - 1 xor k + 1 ... xor 2^m - 1, k <= 2^m - 1
     for i in r:
         if i == k:continue
         print(i, end=' ')
