@@ -1,4 +1,5 @@
 # 二分图染色，本题中图是树
+# python 栈深>1e5，会RE
 read = input
 n = int(read())
 v = [[] for i in range(n+1)] # 邻接
